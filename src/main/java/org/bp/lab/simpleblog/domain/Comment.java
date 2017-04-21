@@ -6,10 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Comment {
@@ -27,7 +30,13 @@ public class Comment {
 	private Date created;
 	
 	@ManyToOne
+	@JsonBackReference
 	private Post post;
+	
+	@PrePersist
+	public void onCreate(){
+		created = new Date();
+	}
 	
 	public Long getId() {
 		return id;
@@ -53,13 +62,5 @@ public class Comment {
 	public void setCreated(Date created) {
 		this.created = created;
 	}
-	public Post getPost() {
-		return post;
-	}
-	public void setPost(Post post) {
-		this.post = post;
-	}
-	
-	
 
 }

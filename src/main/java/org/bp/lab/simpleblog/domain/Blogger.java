@@ -1,6 +1,7 @@
 package org.bp.lab.simpleblog.domain;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,8 +19,10 @@ import javax.validation.constraints.Size;
 
 import org.bp.lab.simpleblog.enums.SystemRole;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
-public class Bloger {
+public class Blogger {
 	
 	@Id
 	@GeneratedValue
@@ -41,8 +44,9 @@ public class Bloger {
 	@Enumerated(EnumType.STRING)
 	private SystemRole systemRole;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="bloger")
-	private List<Post> posts;
+	@JsonManagedReference
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="blogger")
+	private List<Post> posts = new ArrayList<>();
 	
 	public Long getId() {
 		return id;

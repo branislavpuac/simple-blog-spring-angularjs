@@ -1,6 +1,7 @@
 package org.bp.lab.simpleblog.domain;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,10 +12,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Post {
@@ -37,12 +43,26 @@ public class Post {
 	@DateTimeFormat(style="M-")
 	private Date updated;
 	
+	@JsonManagedReference
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="post")
-	private List<Comment> comments;
+	private List<Comment> comments = new ArrayList<>();
 	
+	@JsonBackReference
 	@ManyToOne
-	private Bloger bloger;
+	private Blogger blogger;
 	
+	@JsonBackReference
+	@ManyToOne
+	private Category category;
+	
+	@PrePersist
+	protected void onCreate(){
+		created = new Date();
+	}
+	@PreUpdate
+	public void onUpdate(){
+		updated = new Date();
+	}
 	public Long getId() {
 		return id;
 	}
@@ -85,13 +105,5 @@ public class Post {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	public Bloger getBloger() {
-		return bloger;
-	}
-	public void setBloger(Bloger bloger) {
-		this.bloger = bloger;
-	}
-	
-	
 	
 }

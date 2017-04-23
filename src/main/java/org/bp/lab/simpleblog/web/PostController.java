@@ -24,12 +24,12 @@ public class PostController {
 	
 	@GetMapping
 	public Page<Post> findAll(@RequestParam(defaultValue="0", required=false) int page, 
-								@RequestParam(defaultValue="0", required=false) int size){
+								@RequestParam(defaultValue="10", required=false) int size){
 		return postService.findAll(page, size);
 	}
 	
 	@GetMapping(value="/{id}")
-	public Post findOne(@RequestParam Long id){
+	public Post findOne(@PathVariable Long id){
 		return postService.findOne(id);
 	}
 	
@@ -43,8 +43,8 @@ public class PostController {
 		return postService.save(post);
 	}
 	
-	@DeleteMapping
-	public boolean delete(Long id){
+	@DeleteMapping(value="/{id}")
+	public boolean delete(@PathVariable Long id){
 		postService.delete(id);
 		return true;
 	}

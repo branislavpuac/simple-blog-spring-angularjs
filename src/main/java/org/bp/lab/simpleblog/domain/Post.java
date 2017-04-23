@@ -1,6 +1,5 @@
 package org.bp.lab.simpleblog.domain;
 
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
@@ -33,7 +33,10 @@ public class Post {
 	
 	private String text;
 	
-	private Blob image;
+	private String author;
+	
+	@Lob
+	private byte[] image;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style="M-")
@@ -81,10 +84,16 @@ public class Post {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Blob getImage() {
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public byte[] getImage() {
 		return image;
 	}
-	public void setImage(Blob image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 	public Date getCreated() {

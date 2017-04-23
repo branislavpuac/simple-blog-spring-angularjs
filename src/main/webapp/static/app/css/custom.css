@@ -1,0 +1,11 @@
+.sp-nav{
+	border-bottom: 3px solid grey;
+}
+.sp-content{
+	border-right: 1px solid grey;
+}
+.sp-media{
+	border-bottom: 1px solid grey;
+	width: 90%;
+	postion: relastive;
+}

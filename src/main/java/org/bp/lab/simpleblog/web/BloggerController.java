@@ -21,7 +21,7 @@ public class BloggerController {
 	@Autowired
 	BloggerService bloggerService;
 	
-	@GetMapping()
+	@GetMapping
 	public Page<Blogger> findAll(@RequestParam(defaultValue="0", required=false) int page, 
 								@RequestParam(defaultValue="10", required=false) int size){
 		return bloggerService.findAll(page, size);

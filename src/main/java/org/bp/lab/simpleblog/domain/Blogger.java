@@ -1,6 +1,5 @@
 package org.bp.lab.simpleblog.domain;
 
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -35,7 +35,8 @@ public class Blogger {
 	@NotNull
 	private String password;
 	
-	private Blob image;
+	@Lob
+	private byte[] image;
 	
 	@Pattern(regexp = "[a-zA-Z0-9\\.]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+")
 	@Column(unique=true)
@@ -66,10 +67,10 @@ public class Blogger {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Blob getImage() {
+	public byte[] getImage() {
 		return image;
 	}
-	public void setImage(Blob image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 	public String getEmail() {

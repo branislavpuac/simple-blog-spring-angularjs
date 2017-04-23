@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple blog</title>
+<script src="/static/assets/js/angular.js"></script>
+<script src="/static/assets/js/angular-route.js"></script>
+<script src="/static/app/js/app.js"></script>
+<script src="/static/app/js/post/postController.js"></script>
+<script src="/static/app/js/post/postService.js"></script>
+<link rel="stylesheet" href="/static/assets/css/bootstrap.css">
+<link rel="stylesheet" href="/static/app/css/custom.css">
+
+</head>
+<body ng-app="blog">
+	<header>
+	<nav class="navbar navbar-default navbar-fixed-top sp-nav">
+      <div class="container">
+      	<div class="navbar-header">
+        	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            	<span class="sr-only">Toggle navigation</span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+          	</button>
+          	<a class="navbar-brand" href="#/" title="Simpe-blog">Simple-blog</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+        	<ul class="nav navbar-nav navbar-right">		
+				<li><a href="#/post/postList.html">Posts</a></li>
+				<li><a href="#/profiles/view/{{currentReader.id}}">My Profile</a></li>
+				<li><a href="#/readers/list">Admin</a></li>
+				<li><a href="#/login">Login</a></li>
+				<li><a href="#/register">Register</a></li>
+				<li><a href="" ng-click="logout()">Logout</a></li>				
+          	</ul>
+        </div>
+      </div>
+    </nav>
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 sp-content" ng-view>
+		</div>
+		<div class="col-md-4">
+			<div class="col-offset-1">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Panel title</h3>
+				</div>
+				<div class="panel-body">
+					Panel content
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<footer>
+		<nav class="navbar navbar-default navbar-fixed-bottom visible-lg-block visible-md-block visible-sm-block">
+    	<div class="container">
+      		<small>2017 by <cite title="Source Title">Branislav Puač</cite>.</small>
+    	</div>
+    	</nav>
+	</footer>
+</body>
+</html>

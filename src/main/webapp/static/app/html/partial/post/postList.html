@@ -1,0 +1,21 @@
+<div class="container" ng-init="page=0;size=10;getPage()">
+	<div class="media" ng-repeat="post in posts">
+		<div class="media-left">
+			<a href="#">
+				<img class="media-object" src="..." alt="...">
+			</a>
+		</div>
+		<div class="media-body">
+			<h4 class="media-heading">{{post.headline}}</h4>
+			<div>
+				<h6>{{post.author}} - {{post.created}}</h6>
+			</div>
+			<div>
+				<p>{{post.text}}</p>
+			</div>
+			<div>
+				<p>Text footer<p>
+			</div>
+		</div>
+	</div>
+</div>

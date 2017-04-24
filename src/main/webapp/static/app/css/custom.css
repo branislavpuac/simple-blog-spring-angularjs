@@ -1,23 +1,23 @@
-.sp-nav{
+.sb-nav{
 	border-bottom: 3px solid grey;
 }
-.sp-content{
+.sb-content{
 	border-right: 1px solid grey;
 }
-.sp-media{
+.sb-media{
 	border-bottom: 1px solid grey;
 	width: 90%;
 }
 
-.sp-pointer{
+.sb-pointer{
 	cursor: pointer;
 }
 
-.sp-comments-top{
+.sb-comments-top{
 	background: grey;
 	color: white;
 	padding: 10px 10px 1px 10px;
 }
-.sp-comments-text{
+.sb-comments-text{
 	font-color: white;
 }

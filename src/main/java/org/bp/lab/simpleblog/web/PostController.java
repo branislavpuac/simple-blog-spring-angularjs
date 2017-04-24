@@ -2,6 +2,8 @@ package org.bp.lab.simpleblog.web;
 
 import org.bp.lab.simpleblog.domain.Post;
 import org.bp.lab.simpleblog.service.PostService;
+import org.bp.lab.simpleblog.support.PostToPostListItemDTO;
+import org.bp.lab.simpleblog.web.dto.PostListItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,10 +24,13 @@ public class PostController {
 	@Autowired
 	PostService postService;
 	
+	@Autowired
+	PostToPostListItemDTO toPostListItemDTO;
+	
 	@GetMapping
-	public Page<Post> findAll(@RequestParam(defaultValue="0", required=false) int page, 
+	public Page<PostListItemDTO> findAll(@RequestParam(defaultValue="0", required=false) int page, 
 								@RequestParam(defaultValue="10", required=false) int size){
-		return postService.findAll(page, size);
+		return toPostListItemDTO.convert(postService.findAll(page, size));
 	}
 	
 	@GetMapping(value="/{id}")

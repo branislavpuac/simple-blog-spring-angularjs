@@ -1,5 +1,5 @@
-<div class="container" ng-init="getOne()">
-	<div>
+<div class="container col-md-12" ng-init="getOne()">
+	<div class="row">
 		<div>
 			<h2>{{post.headline}}</h2>
 		</div>
@@ -11,6 +11,16 @@
 		</div>
 		<div>
 			<p>Text footer<p>
+		</div>
+	</div>
+	<div class="row sp-comments-top">
+		<p><b>COMMENTS {{post.comments}}</b></p>
+	</div>
+	<div class="row">
+		<div class="well col-md-10 col-md-offset-1">
+		<div>
+			<h3>Headline</h3>
+		</div>
 		</div>
 	</div>
 </div>

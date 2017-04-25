@@ -5,6 +5,8 @@ import java.util.List;
 import org.bp.lab.simpleblog.domain.Comment;
 import org.bp.lab.simpleblog.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +20,11 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public List<Comment> findAll() {
 		return commentRepository.findAll();
+	}
+	
+	@Override
+	public Page<Comment> getPage(int page, int size) {
+		return commentRepository.findAll(new PageRequest(page, size));
 	}
 
 	@Override

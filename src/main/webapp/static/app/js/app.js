@@ -15,6 +15,14 @@ blog.config(function($routeProvider, $httpProvider) {
 		templateUrl: '/static/app/html/partial/post/postItem.html',
 		controller: 'postController'
 	})
+	.when('/addEditPost', {
+		templateUrl: '/static/app/html/partial/post/addEditPost.html',
+		controller: 'postController'
+	})
+	.when('/addEditPost/:id', {
+		templateUrl: '/static/app/html/partial/post/addEditPost.html',
+		controller: 'postController'
+	})
 	.otherwise({
 		redirectTo: '/home'
 	});

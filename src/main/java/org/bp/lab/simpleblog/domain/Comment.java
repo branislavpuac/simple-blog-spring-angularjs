@@ -21,7 +21,9 @@ public class Comment {
 	@GeneratedValue
 	private Long id;
 	
-	private String name;
+	private String author;
+	
+	private String headline;
 	
 	private String text;
 	
@@ -44,12 +46,19 @@ public class Comment {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getAuthor() {
+		return author;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
+	public String getHeadline() {
+		return headline;
+	}
+	public void setHeadline(String headline) {
+		this.headline = headline;
+	}
+
 	public String getText() {
 		return text;
 	}

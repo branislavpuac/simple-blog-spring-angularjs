@@ -1,11 +1,12 @@
-var blog = angular.module('blogControllers', []);
+var blog = angular.module('commentControllers', []);
 
-blog.controller('commentController', function($scope){
+blog.controller('commentController', function($scope, commentService){
 	
-	$scope.getAll = function(){
-		commentService.getAll()
+	$scope.getPage = function(){
+		commentService.getPage($scope.page, $scope.size)
 			.success(function(data){
-				
+				$scope.comments = data.content;
+				$scope.totalComments = data.totalElements;
 			})
 			.error(function(){
 				

@@ -27,7 +27,7 @@ public class CommentController {
 		return commentService.findAll();
 	}
 	
-	@GetMapping
+	@GetMapping(params={"page", "size"})
 	public Page<Comment> getPage(@RequestParam(defaultValue="0", required=false)int page, 
 								@RequestParam(defaultValue="4", required=false)int size){
 		return commentService.getPage(page, size);

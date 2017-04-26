@@ -21,3 +21,12 @@
 .sb-comments-text{
 	font-color: white;
 }
+
+.sb-comment{
+	background-color: white;
+	padding: 10px 10px 10px 10px;
+	/* box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5); */
+	margin-bottom: 10px;
+	border-left: 1px solid grey;
+	border-right: 1px solid grey;
+}

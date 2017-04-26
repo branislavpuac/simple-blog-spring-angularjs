@@ -13,15 +13,20 @@
 			<p>Text footer<p>
 		</div>
 	</div>
-	<div class="row sb-comments-top">
-		<p><b>COMMENTS {{post.comments}}</b></p>
-	</div>
-	<div class="row">
-		<div class="well col-md-12">
-		<br>
-		<div class="col-md-10 col-offset-1">
-			<h3>Headline</h3>
+	<div ng-controller="commentController">
+		<div class="row sb-comments-top" ng-init="page=0;size=4;getPage()">
+			<p><b>COMMENTS {{totalComments}}</b></p>
 		</div>
+		<div class="row">
+			<div class="well col-md-12">
+			<div class="col-md-11.5 col-md-offset-0.5 sb-comment" ng-repeat="comment in comments">
+				<h4>{{ comment.headline }}</h4>
+				<h6>{{ comment.author }} - {{ comment.created }}</h6>
+				<hr>
+				<p>{{ comment.text }}</p>
+				<div>Comment Footer</div>
+			</div>
+			</div>
 		</div>
 	</div>
 </div>

@@ -2,7 +2,8 @@ var blog = angular.module('blog', ['ngRoute',
 									'blog.services',
 									'blog.controllers',
 									'commentControllers',
-									'commentServices']);
+									'commentServices',
+									'sharedDirectives']);
 
 blog.config(function($routeProvider, $httpProvider) {
 	

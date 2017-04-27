@@ -1,13 +1,13 @@
 <div>
 	<div class="row">
 		<div class="col-md-12">
-			<button class="btn btn-success">Save Post</button>
+			<button class="btn btn-success" ng-click="saveWithFile()">Save Post</button>
 			<hr>
 			<form class="form-horizontal">
 				<div class="form-group">
    					<label for="category" class="col-md-2 control-label">Category</label>
     				<div class="col-sm-10">
-      					<select class="form-control" id="category">
+      					<select class="form-control" id="category" ng-model="post.category">
       					<option>Category</option>
       					</select>
     				</div>
@@ -15,19 +15,19 @@
   				<div class="form-group">
    					<label for="headline" class="col-md-2 control-label">Headline</label>
     				<div class="col-sm-10">
-      					<input type="text" class="form-control" id="headline" placeholder="Headline...">
+      					<input type="text" class="form-control" id="headline" placeholder="Headline..." ng-model="post.headline">
     				</div>
   			    </div>
  			    <div class="form-group">
 					<label for="text" class="col-md-2 control-label">Text</label>
     				<div class="col-md-10">
-      					<textarea rows="30" class="form-control" id="text" placeholder="Text..."></textarea>
+      					<textarea rows="30" class="form-control" id="text" placeholder="Text..." ng-model="post.text"></textarea>
    					</div>
  				</div>
  				<div class="form-group">
    					<label for="image" class="col-md-2 control-label">Image</label>
     				<div class="col-sm-10">
-      					<input type="file" class="form-control" id="image" placeholder="Image...">
+      					<input type="file" class="form-control" id="image" placeholder="Image..." file-model="file">
     				</div>
   			    </div>
 			</form>

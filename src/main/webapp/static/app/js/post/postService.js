@@ -6,11 +6,11 @@ blog.service('postService', function($http){
 	
 	this.getPage = function(page, size) {
 		return $http.get(this.url, { params: { 'page': page, 'size': size} });
-	}
+	};
 
 	this.getOne = function(id) {
 		return $http.get(this.url + '/' + id);
-	}
+	};
 
 	this.save = function(post) {
 		if(post.id){
@@ -18,10 +18,19 @@ blog.service('postService', function($http){
 		}else{
 			return $http.post(this.url, post);
 		}
-	}
+	};
+	
+	this.saveWithFile = function(fd){
+		return $http.post(this.url + '/file', fd, {
+			transformRequest : angular.identity,
+			headers : {
+			'Content-Type' : undefined
+			}
+		});
+	};
 
 	this.delete = function(id) {
 		return $http.delete(this.url + '/' + id);
-	}
+	};
 	
 });

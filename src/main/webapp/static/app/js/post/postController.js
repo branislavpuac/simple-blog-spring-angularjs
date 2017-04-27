@@ -2,6 +2,10 @@ var blog = angular.module('blog.controllers', [])
 
 blog.controller('postController', function($scope, postService, $routeParams){
 	
+	$scope.post = {};
+	
+	$scope.file = [];
+	
 	$scope.getPage = function(){
 		postService.getPage($scope.page, $scope.size)
 			.success(function(data){
@@ -19,6 +23,20 @@ blog.controller('postController', function($scope, postService, $routeParams){
 			})
 			.error(function(){
 
+			});
+	};
+	
+	$scope.saveWithFile = function(){
+		var file = $scope.file;
+		var fd = new FormData();
+		fd.append('file', file);
+		fd.append('post',angular.toJson($scope.post,true));
+		postService.saveWithFile(fd)
+			.success(function(data){
+				
+			})
+			.error(function(){
+				
 			});
 	};
 	

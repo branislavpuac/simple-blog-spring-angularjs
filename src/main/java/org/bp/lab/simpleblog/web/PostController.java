@@ -46,7 +46,7 @@ public class PostController {
 	
 	@PostMapping(value="/file")
 	public Post createWithFile(@RequestParam String post, @RequestParam MultipartFile file){
-		return null;
+		return postService.saveWithFile(post, file);
 	}
 	
 	@PutMapping(value="/{id}", consumes="application/json")

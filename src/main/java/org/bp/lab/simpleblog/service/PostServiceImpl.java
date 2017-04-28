@@ -39,9 +39,11 @@ public class PostServiceImpl implements PostService{
 	
 	@Override
 	public Post saveWithFile(String post, MultipartFile file) {
+		
 		ObjectMapper mapper = new ObjectMapper();
+		Post postToPersist = new Post();
 		try{
-		Post postToPersist = mapper.convertValue(post, Post.class);
+		postToPersist = mapper.readValue(post, Post.class);
 		postToPersist.setImage(file.getBytes());
 		}catch(JsonParseException e){
 			e.printStackTrace();
@@ -50,7 +52,7 @@ public class PostServiceImpl implements PostService{
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		return null;
+		return postRepository.save(postToPersist);
 	}
 
 	@Override

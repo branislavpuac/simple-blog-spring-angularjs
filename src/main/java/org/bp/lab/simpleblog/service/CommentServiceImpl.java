@@ -3,6 +3,7 @@ package org.bp.lab.simpleblog.service;
 import java.util.List;
 
 import org.bp.lab.simpleblog.domain.Comment;
+import org.bp.lab.simpleblog.domain.Post;
 import org.bp.lab.simpleblog.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,9 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Autowired
 	CommentRepository commentRepository;
+	
+	@Autowired
+	PostService postService;
 
 	@Override
 	public List<Comment> findAll() {
@@ -23,8 +27,8 @@ public class CommentServiceImpl implements CommentService{
 	}
 	
 	@Override
-	public Page<Comment> getPage(int page, int size) {
-		return commentRepository.findAll(new PageRequest(page, size));
+	public Page<Comment> findAllWherePostId(Long postId, int page, int size) {
+		return commentRepository.findByPostId(postId, new PageRequest(page, size));
 	}
 
 	@Override
@@ -33,7 +37,9 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public Comment save(Comment comment) {
+	public Comment save(Long postId, Comment comment) {
+		Post post = postService.findOne(postId);
+		comment.setPost(post);
 		return commentRepository.save(comment);
 	}
 

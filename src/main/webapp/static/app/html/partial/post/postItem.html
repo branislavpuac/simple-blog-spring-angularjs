@@ -1,13 +1,13 @@
 <div class="container col-md-12" ng-init="getOne()">
 	<div class="row">
 		<div>
+			<h6>{{post.author}} - {{post.created}}</h6>
+		</div>
+		<div>
 			<h2>{{post.headline}}</h2>
 		</div>
 		<div>
 			<img class="media-object" src="data:image/jpg;base64,{{post.image}}" alt="..." width="100%">
-		</div>
-		<div>
-			<h6>{{post.author}} - {{post.created}}</h6>
 		</div>
 		<div>
 			<p>{{post.text}}</p>
@@ -17,17 +17,22 @@
 		</div>
 	</div>
 	<div ng-controller="commentController">
-		<div class="row sb-comments-top" ng-init="page=0;size=4;getPage()">
+		<div class="row sb-comments-top" ng-init="page=0;size=4;getPage(post.id)">
 			<p><b>COMMENTS {{totalComments}}</b></p>
 		</div>
 		<div class="row">
 			<div class="well col-md-12">
-			<div class="col-md-11.5 col-md-offset-0.5 sb-comment" ng-repeat="comment in comments">
+			<div class="col-md-11.5 col-md-offset-0.5 sb-comment" ng-repeat="(index,comment) in comments">
 				<h4>{{ comment.headline }}</h4>
 				<h6>{{ comment.author }} - {{ comment.created }}</h6>
 				<hr>
 				<p>{{ comment.text }}</p>
-				<div>Comment Footer</div>
+				<div>
+					<hr>
+					<div><span class="glyphicon glyphicon-thumbs-up sb-pointer sb-positive" ng-click="updateLike(comment, index, 1)">{{comment.positive}} </span>
+					<span class="glyphicon glyphicon-thumbs-down sb-pointer sb-negative" ng-click="updateLike(comment, index, 0)">{{comment.negative}}</span>
+					</div>
+				</div>
 			</div>
 			</div>
 		</div>

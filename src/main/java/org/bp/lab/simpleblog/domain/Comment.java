@@ -31,6 +31,10 @@ public class Comment {
 	@DateTimeFormat(style="M-")
 	private Date created;
 	
+	private int positive;
+	
+	private int negative;
+	
 	@ManyToOne
 	@JsonBackReference
 	private Post post;
@@ -38,6 +42,8 @@ public class Comment {
 	@PrePersist
 	public void onCreate(){
 		created = new Date();
+		positive = 0;
+		negative = 0;
 	}
 	
 	public Long getId() {
@@ -72,4 +78,29 @@ public class Comment {
 		this.created = created;
 	}
 
+	public int getPositive() {
+		return positive;
+	}
+
+	public void setPositive(int positive) {
+		this.positive = positive;
+	}
+
+	public int getNegative() {
+		return negative;
+	}
+
+	public void setNegative(int negative) {
+		this.negative = negative;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
+	
 }

@@ -27,25 +27,26 @@ public class CommentController {
 		return commentService.findAll();
 	}
 	
-	@GetMapping(params={"page", "size"})
-	public Page<Comment> getPage(@RequestParam(defaultValue="0", required=false)int page, 
+	@GetMapping(params={"page", "size", "postId"})
+	public Page<Comment> getPage(@RequestParam Long postId, 
+								@RequestParam(defaultValue="0", required=false)int page, 
 								@RequestParam(defaultValue="4", required=false)int size){
-		return commentService.getPage(page, size);
+		return commentService.findAllWherePostId(postId, page, size);
 	}
 	
 	@GetMapping(value="/{id}")
-	public Comment findOne(@PathVariable Long id){
+	public Comment findOne(Long postId, @PathVariable Long id){
 		return commentService.findOne(id);
 	}
 	
 	@PostMapping(consumes="application/json")
-	public Comment create(@RequestBody Comment comment){
-		return commentService.save(comment);
+	public Comment create(@RequestParam Long postId,@RequestBody Comment comment){
+		return commentService.save(postId, comment);
 	}
 	
 	@PutMapping(value="/{id}", consumes="application/json")
-	public Comment update(@PathVariable Long id, @RequestBody Comment comment){
-		return commentService.save(comment);
+	public Comment update(@RequestParam Long postId, @PathVariable Long id, @RequestBody Comment comment){
+		return commentService.save(postId, comment);
 	}
 	
 	@DeleteMapping(value="/{id}")

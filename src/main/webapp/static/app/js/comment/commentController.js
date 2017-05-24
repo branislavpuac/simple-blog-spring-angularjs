@@ -24,9 +24,9 @@ blog.controller('commentController', function($scope, commentService, $routePara
 		}
 		
 		commentService.save(comment, $routeParams.id)
-			.then(function success(){
+			.then(function success(response){
 				$scope.comments[index] = response.data;
-			}, function error(){
+			}, function error(response){
 				
 			});
 	};

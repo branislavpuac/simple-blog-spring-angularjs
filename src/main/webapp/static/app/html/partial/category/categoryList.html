@@ -1,0 +1,19 @@
+<div class="container col-md-12" ng-init="page=0;size=5;getPage()">
+	<div class="col-md-12">
+		<table class="table">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Actions</th>
+			</tr>
+			<tr ng-repeat="category in categories">
+				<td>{{ category.id }}</td>
+				<td>{{ category.name }}</td>
+				<td>
+					<a href="#!/addEditCategory/{{category.id}}"><button class="btn btn-xs btn-primary">Edit</button></a>
+					<button class="btn btn-xs btn-danger" ng-click="delete(category.id)">Delete</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

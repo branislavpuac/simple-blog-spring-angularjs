@@ -7,13 +7,12 @@ blog.controller('commentController', function($scope, commentService, $routePara
 	$scope.getPage = function(){
 		console.log($routeParams.id)
 		commentService.getPage($scope.page, $scope.size, $routeParams.id)
-			.success(function(data){
-				$scope.comments = data.content;
-				$scope.totalComments = data.totalElements;
-			})
-			.error(function(){
+			.then(function success(response){
+				$scope.comments = response.data.content;
+				$scope.totalComments = response.data.totalElements;
+			}, function error(response){
 				
-			})
+			});
 	};
 	
 	$scope.updateLike = function(comment, index, choice){
@@ -25,10 +24,9 @@ blog.controller('commentController', function($scope, commentService, $routePara
 		}
 		
 		commentService.save(comment, $routeParams.id)
-			.success(function(data){
-				$scope.comments[index] = data;
-			})
-			.error(function(data){
+			.then(function success(){
+				$scope.comments[index] = response.data;
+			}, function error(){
 				
 			});
 	};

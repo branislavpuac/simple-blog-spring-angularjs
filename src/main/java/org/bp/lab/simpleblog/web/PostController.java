@@ -29,8 +29,8 @@ public class PostController {
 	PostToPostListItemDTO toPostListItemDTO;
 	
 	@GetMapping
-	public Page<PostListItemDTO> findAll(@RequestParam(defaultValue="0", required=false) int page, 
-								@RequestParam(defaultValue="10", required=false) int size){
+	public Page<PostListItemDTO> findAll(@RequestParam(defaultValue = "0", required = false) int page,
+			@RequestParam(defaultValue = "10", required = false) int size) {
 		return toPostListItemDTO.convert(postService.findAll(page, size));
 	}
 	

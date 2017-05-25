@@ -9,6 +9,7 @@ public interface CommentService {
 	
 	List<Comment> findAll();
 	Page<Comment> findAllWherePostId(Long id, int page, int size);
+	List<Comment> getAllPostComments(Long postId);
 	Comment findOne(Long id);
 	Comment save(Long postId, Comment comment);
 	void delete(Long id);

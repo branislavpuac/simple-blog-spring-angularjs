@@ -2,7 +2,7 @@ var blog = angular.module('commentControllers', []);
 
 blog.controller('commentController', function($scope, commentService, $routeParams){
 	
-	$scope.likeClass = ['glyphicon', 'glyphicon-thumbs-up', 'sb-pointer']
+	$scope.likeClass = ['glyphicon', 'glyphicon-thumbs-up', 'sb-pointer'];
 	
 	$scope.getPage = function(){
 		console.log($routeParams.id)
@@ -10,6 +10,16 @@ blog.controller('commentController', function($scope, commentService, $routePara
 			.then(function success(response){
 				$scope.comments = response.data.content;
 				$scope.totalComments = response.data.totalElements;
+			}, function error(response){
+				
+			});
+	};
+	
+	$scope.findAllByPostId = function(){
+		commentService.findAllByPostId($routeParams.id)
+			.then(function success(response){
+				$scope.comments = response.data;
+				$scope.totalComments = response.data.length;
 			}, function error(response){
 				
 			});

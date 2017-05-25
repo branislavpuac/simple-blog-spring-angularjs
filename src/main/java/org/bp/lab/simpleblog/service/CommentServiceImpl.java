@@ -30,6 +30,11 @@ public class CommentServiceImpl implements CommentService{
 	public Page<Comment> findAllWherePostId(Long postId, int page, int size) {
 		return commentRepository.findByPostId(postId, new PageRequest(page, size));
 	}
+	
+	@Override
+	public List<Comment> getAllPostComments(Long postId) {
+		return commentRepository.findByPostId(postId);
+	}
 
 	@Override
 	public Comment findOne(Long id) {

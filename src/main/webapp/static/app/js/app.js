@@ -38,6 +38,10 @@ blog.config(function($routeProvider, $httpProvider) {
 		templateUrl: '/static/app/html/partial/category/addEditCategory.html',
 		controller: 'categoryController'
 	})
+	.when('/comments/:id', {
+		templateUrl: '/static/app/html/partial/comment/commentList.html',
+		controller: 'commentController'
+	})
 	.otherwise({
 		redirectTo: '/home'
 	});

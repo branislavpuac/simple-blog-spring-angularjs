@@ -27,15 +27,20 @@ public class CommentController {
 		return commentService.findAll();
 	}
 	
-	@GetMapping(params={"page", "size", "postId"})
-	public Page<Comment> getPage(@RequestParam Long postId, 
-								@RequestParam(defaultValue="0", required=false)int page, 
-								@RequestParam(defaultValue="4", required=false)int size){
+	@GetMapping(params = { "page", "size", "postId" })
+	public Page<Comment> getPage(@RequestParam Long postId,
+			@RequestParam(defaultValue = "0", required = false) int page,
+			@RequestParam(defaultValue = "4", required = false) int size) {
 		return commentService.findAllWherePostId(postId, page, size);
 	}
 	
-	@GetMapping(value="/{id}")
-	public Comment findOne(Long postId, @PathVariable Long id){
+	@GetMapping(value="/{postId}", params="postId")
+	public List<Comment> getAllPostComments(Long postId){
+		return commentService.getAllPostComments(postId);
+	}
+	
+	@GetMapping(value="/{postId}/{id}")
+	public Comment findOne(@PathVariable Long postId, @PathVariable Long id){
 		return commentService.findOne(id);
 	}
 	

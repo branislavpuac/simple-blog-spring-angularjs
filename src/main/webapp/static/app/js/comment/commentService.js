@@ -6,7 +6,11 @@ blog.service('commentService', function($http){
 	
 	this.getPage = function(page, size, postId){
 		return $http.get(this.url, { params: {'page': page, 'size': size, 'postId': postId }});
-	}
+	};
+	
+	this.findAllByPostId = function(postId){
+		return $http.get(this.url, { params: { 'postId': postId }});
+	};
 	
 	this.save = function(comment, postId){
 		if(comment.id){
@@ -14,6 +18,6 @@ blog.service('commentService', function($http){
 		}else{
 			return $http.post(this.url, comment, { params: { 'postId': postId }});
 		}
-	}
+	};
 	
 });

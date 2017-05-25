@@ -1,5 +1,7 @@
 package org.bp.lab.simpleblog.repository;
 
+import java.util.List;
+
 import org.bp.lab.simpleblog.domain.Comment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,5 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 	
 	Page<Comment> findByPostId(Long postId, Pageable pageable);
+	List<Comment> findByPostId(Long postId);
 
 }

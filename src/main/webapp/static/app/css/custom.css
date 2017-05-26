@@ -60,3 +60,14 @@
     text-shadow: 0 1px rgba(0,0,0,0.3);
     background-color: #357ae8;
 }
+
+.sb-submit-invalid{
+	border: 0px;
+    color: #fff;
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    background-color: #99ccff;
+    padding: 17px 0px;
+    font-family: roboto;
+    font-size: 14px;
+    width: 100%;
+}

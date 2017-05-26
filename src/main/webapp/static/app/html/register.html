@@ -2,34 +2,36 @@
 <br>
 <div class="loginmodal-container">
 	<div class="col-md-5 col-md-offset-3">
-		<form>
+		<form name="registerForm">
 			<div class="form-group">
 				<label for="username">Username</label> <input type="text"
 					class="form-control" id="username" placeholder="Username ..."
-					ng-model="bloger.username">
+					ng-minlength="2" ng-model="blogger.username" required>
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label> <input type="password"
 					class="form-control" id="password" placeholder="Password ..."
-					ng-model="bloger.password">
+					ng-minlength="6" ng-model="blogger.password" required>
 			</div>
 			<div class="form-group">
 				<label for="confirmPassword">Confirm Password</label> <input
 					type="password" class="form-control" id="confirmPassword"
-					placeholder="Confirm Password ..."
-					ng-model="bloger.confirmPassword">
+					placeholder="Confirm Password ..." compare-to="blogger.password"
+					ng-minlength="6" ng-model="bloger.confirmPassword" required>
 			</div>
 			<div class="form-group">
-				<label for="email">E-mail</label> <input type="email"
+				<label for="email">E-mail</label> <input type="text"
 					class="form-control" id="email" placeholder="E-mail ..."
-					ng-model="bloger.email">
+					ng-minlength="3" ng-model="blogger.email" required 
+					pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
 			</div>
 			<div class="form-group">
 				<label for="image">Image</label> <input type="file"
 					class="form-control" id="file" placeholder="Image ..."
-					file-model="file">
+					file-model="file" required>
 			</div>
-			<input type="submit" class="sb-login-submit" value="Register">
+			<input type="submit" ng-class="{'sb-submit': !registerForm.$invalid, 'sb-submit-invalid': registerForm.$invalid }" 
+					value="Register" ng-disabled="registerForm.$invalid">
 		</form>
 	</div>
 </div>

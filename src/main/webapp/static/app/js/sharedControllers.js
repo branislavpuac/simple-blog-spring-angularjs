@@ -14,13 +14,13 @@ sharedControllers.controller('navigationController', function($scope, $http, $ro
 		$http.get('/user', { headers: headers})
 			.then(function success(response){
 				if(response.data.name){
-					$rootScope.currentBloger = response.data.principal;
+					$rootScope.currentBlogger = response.data.principal;
 				}else{
-					$rootScope.burrentBloger = null;
+					$rootScope.burrentBlogger = null;
 				}
-				callback && callback($rootScope.currentBloger, response.data);
+				callback && callback($rootScope.currentBlogger, response.data);
 			}, function error(response){
-				$scope.currentBloger = null;
+				$scope.currentBlogger = null;
 				callback && callback(false, response.data)
 			});
 	};
@@ -28,14 +28,14 @@ sharedControllers.controller('navigationController', function($scope, $http, $ro
 	authenticate();
 	
 	$scope.login = function(){
-		authenticate($scope.credentials, function(currentBloger){
-			if(currentBloger){
+		authenticate($scope.credentials, function(currentBlogger){
+			if(currentBlogger){
 				console.log('Login succeeded');
 				$location.path('/');
 			}else{
 				console.log('Login failed');
 				$location.path('/login');
-				$rootScope.currentBloger = null;
+				$rootScope.currentBlogger = null;
 			}
 		});
 	};
@@ -43,11 +43,11 @@ sharedControllers.controller('navigationController', function($scope, $http, $ro
 	$scope.logout = function(){
 		$http.post('/logout', {})
 			.then(function success(){
-				$rootScope.currentbloger = null
+				$rootScope.currentBlogger = null
 				$location.path('/')
 			}, function error(){
-				$console.log('Logout failed');
-				$rootScope.currentBloger = null;
+				console.log('Logout failed');
+				$rootScope.currentBlogger = null;
 				$location.path('/');
 			});
 	};

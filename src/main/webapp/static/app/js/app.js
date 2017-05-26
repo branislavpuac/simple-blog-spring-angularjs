@@ -55,4 +55,6 @@ blog.config(function($routeProvider, $httpProvider) {
 		redirectTo: '/home'
 	});
 	
+	$httpProvider.defaults.headers.common['x-Requested-With'] = 'XMLHttpRequest';
+	
 });

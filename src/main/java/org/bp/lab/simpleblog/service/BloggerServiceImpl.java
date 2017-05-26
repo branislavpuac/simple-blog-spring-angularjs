@@ -1,5 +1,7 @@
 package org.bp.lab.simpleblog.service;
 
+import java.util.Optional;
+
 import org.bp.lab.simpleblog.domain.Blogger;
 import org.bp.lab.simpleblog.repository.BloggerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,11 @@ public class BloggerServiceImpl implements BloggerService{
 	@Override
 	public Blogger findOne(Long id) {
 		return bloggerRepository.findOne(id);
+	}
+	
+	@Override
+	public Optional<Blogger> findByUsername(String username) {
+		return bloggerRepository.findByUsername(username);
 	}
 
 	@Override

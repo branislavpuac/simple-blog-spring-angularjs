@@ -79,6 +79,12 @@ public class Blogger {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public SystemRole getSystemRole() {
+		return systemRole;
+	}
+	public void setSystemRole(SystemRole systemRole) {
+		this.systemRole = systemRole;
+	}
 	public List<Post> getPosts() {
 		return posts;
 	}

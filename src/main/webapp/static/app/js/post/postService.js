@@ -7,6 +7,10 @@ blog.service('postService', function($http){
 	this.getPage = function(page, size) {
 		return $http.get(this.url, { params: { 'page': page, 'size': size} });
 	};
+	
+	this.getPostsByBloggerId = function(id, page, size){
+		return $http.get(this.url, {params: { 'id': id, 'page': page, 'size': size }});
+	};
 
 	this.getOne = function(id) {
 		return $http.get(this.url + '/' + id);

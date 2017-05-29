@@ -8,4 +8,8 @@ blog.service('bloggerService', function($http){
 		return $http.get(this.url, { params: { 'page': page, 'size': size }});
 	}
 	
+	this.getOne = function(id){
+		return $http.get(this.url + '/' + id);
+	}
+	
 });

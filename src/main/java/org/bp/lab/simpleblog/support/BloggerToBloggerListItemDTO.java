@@ -9,7 +9,9 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BloggerToBloggerListItemDTO implements Converter<Page<Blogger>, Page<BloggerListItemDTO>> {
 
 	@Override
@@ -18,10 +20,9 @@ public class BloggerToBloggerListItemDTO implements Converter<Page<Blogger>, Pag
 		for(Blogger blogger: bloggersPage.getContent()){
 		BloggerListItemDTO bloggerDTO = new BloggerListItemDTO();
 		bloggerDTO.setId(blogger.getId());
-		bloggerDTO.setUsername(blogger.getUsername());
 		bloggerDTO.setFirstName(blogger.getFirstName());
 		bloggerDTO.setLastName(blogger.getLastName());
-		bloggerDTO.setEmail(blogger.getEmail());
+		bloggerDTO.setSystemRole(blogger.getSystemRole().toString());
 		bloggerDTO.setPostCount(blogger.getPosts().size());
 		bloggersList.add(bloggerDTO);
 		}

@@ -1,0 +1,36 @@
+<div>
+	<div>
+		<div class="row" ng-init="getOne();page=0,size=10;getPostsByBloggerId()">
+			<div>
+				<div class="col-md-4">
+					
+				</div>
+				<div class="col-md-8">
+					<li>
+						<ul><b>Username:</b> {{blogger.username }}</ul>
+						<ul><b>First Name:</b> {{ blogger.firstName }}</ul>
+						<ul><b>Last Name:</b> {{ blogger.lastName }}</ul>
+						<ul><b>System Role:</b> {{ blogger.systemRole }}</ul>
+						<ul><b>Email:</b> {{ blogger.email }}</ul>
+					</li>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<table class="table">
+				<tr>
+					<th>Id</th>
+					<th>Headline</th>
+					<th>Created</th>
+					<th>Updated</th>
+				</tr>
+				<tr ng-repeat="post in posts">
+					<td>{{ post.id }}</td>
+					<td>{{ post.headline }}</td>
+					<td>{{ post.created }}</td>
+					<td>{{ post.updated }}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

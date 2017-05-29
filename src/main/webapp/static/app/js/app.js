@@ -50,7 +50,7 @@ blog.config(function($routeProvider, $httpProvider) {
 		controller: 'bloggerController'
 	})
 	.when('/bloggers/:id', {
-		templateUrl: '/static/app/html/partial/blogger/blogerProfile.html',
+		templateUrl: '/static/app/html/partial/blogger/bloggerProfile.html',
 		controller: 'bloggerController'
 	})
 	.when('/login', {

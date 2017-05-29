@@ -28,10 +28,17 @@ public class PostController {
 	@Autowired
 	PostToPostListItemDTO toPostListItemDTO;
 	
-	@GetMapping
+	@GetMapping(params={"id", "page", "size"})
 	public Page<PostListItemDTO> findAll(@RequestParam(defaultValue = "0", required = false) int page,
 			@RequestParam(defaultValue = "10", required = false) int size) {
 		return toPostListItemDTO.convert(postService.findAll(page, size));
+	}
+	
+	@GetMapping
+	public  Page<PostListItemDTO> findAllByBloggerId(@RequestParam Long id, 
+			@RequestParam (defaultValue="0")int page, 
+			@RequestParam (defaultValue="10") int size){
+		return toPostListItemDTO.convert(postService.findAllByBloggerId(id, page, size));
 	}
 	
 	@GetMapping(value="/{id}")

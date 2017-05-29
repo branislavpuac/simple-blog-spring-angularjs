@@ -2,6 +2,8 @@ package org.bp.lab.simpleblog.web;
 
 import org.bp.lab.simpleblog.domain.Blogger;
 import org.bp.lab.simpleblog.service.BloggerService;
+import org.bp.lab.simpleblog.support.BloggerToBloggerListItemDTO;
+import org.bp.lab.simpleblog.web.dto.BloggerListItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,10 +24,13 @@ public class BloggerController {
 	@Autowired
 	BloggerService bloggerService;
 	
+	@Autowired
+	BloggerToBloggerListItemDTO toDTO;
+	
 	@GetMapping
-	public Page<Blogger> findAll(@RequestParam(defaultValue="0", required=false) int page, 
+	public Page<BloggerListItemDTO> findAll(@RequestParam(defaultValue="0", required=false) int page, 
 								@RequestParam(defaultValue="10", required=false) int size){
-		return bloggerService.findAll(page, size);
+		return toDTO.convert(bloggerService.findAll(page, size));
 	}
 	
 	@GetMapping(value="/{id}")

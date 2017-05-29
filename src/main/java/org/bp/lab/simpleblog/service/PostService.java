@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface PostService {
 	
 	Page<Post> findAll(int page, int size);
+	Page<Post> findAllByBloggerId(Long id, int page, int size);
 	Post findOne(Long id);
 	Post save (Post post);
 	Post saveWithFile(String post, MultipartFile file);

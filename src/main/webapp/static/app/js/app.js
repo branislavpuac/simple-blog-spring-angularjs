@@ -5,6 +5,8 @@ var blog = angular.module('blog', ['ngRoute',
 									'commentServices',
 									'categoryControllers',
 									'categoryServices',
+									'bloggerControllers',
+									'bloggerServices',
 									'sharedControllers',
 									'sharedDirectives']);
 
@@ -42,6 +44,14 @@ blog.config(function($routeProvider, $httpProvider) {
 	.when('/comments/:id', {
 		templateUrl: '/static/app/html/partial/comment/commentList.html',
 		controller: 'commentController'
+	})
+	.when('/bloggers', {
+		templateUrl: '/static/app/html/partial/blogger/bloggerList.html',
+		controller: 'bloggerController'
+	})
+	.when('/bloggers/:id', {
+		templateUrl: '/static/app/html/partial/blogger/blogerProfile.html',
+		controller: 'bloggerController'
 	})
 	.when('/login', {
 		templateUrl: '/static/app/html/login.html',

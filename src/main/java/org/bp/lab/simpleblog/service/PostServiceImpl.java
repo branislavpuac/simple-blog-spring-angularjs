@@ -42,14 +42,14 @@ public class PostServiceImpl implements PostService{
 		
 		ObjectMapper mapper = new ObjectMapper();
 		Post postToPersist = new Post();
-		try{
-		postToPersist = mapper.readValue(post, Post.class);
-		postToPersist.setImage(file.getBytes());
-		}catch(JsonParseException e){
+		try {
+			postToPersist = mapper.readValue(post, Post.class);
+			postToPersist.setImage(file.getBytes());
+		} catch (JsonParseException e) {
 			e.printStackTrace();
-		}catch(JsonMappingException e){
+		} catch (JsonMappingException e) {
 			e.printStackTrace();
-		}catch(IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return postRepository.save(postToPersist);

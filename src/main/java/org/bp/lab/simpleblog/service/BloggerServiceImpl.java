@@ -1,5 +1,6 @@
 package org.bp.lab.simpleblog.service;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import org.bp.lab.simpleblog.domain.Blogger;
@@ -9,6 +10,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 @Transactional
@@ -35,6 +41,23 @@ public class BloggerServiceImpl implements BloggerService{
 	@Override
 	public Blogger save(Blogger bloger) {
 		return bloggerRepository.save(bloger);
+	}
+	
+	@Override
+	public Blogger saveWithFile(String blogger, MultipartFile file) {
+		ObjectMapper mapper = new ObjectMapper();
+		Blogger bloggerToPersist = new Blogger();
+		try{
+			bloggerToPersist = mapper.readValue(blogger, Blogger.class);
+			bloggerToPersist.setImage(file.getBytes());
+		}catch(JsonParseException e){
+			e.printStackTrace();
+		}catch(JsonMappingException e){
+			e.printStackTrace();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		return bloggerRepository.save(bloggerToPersist);
 	}
 
 	@Override

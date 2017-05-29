@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value="/api/bloggers")
@@ -37,7 +38,12 @@ public class BloggerController {
 		return bloggerService.save(blogger);
 	}
 	
-	@PutMapping(value="/{id}", consumes="application/json")
+	@PostMapping(value="/file")
+	public Blogger createWithFile(@RequestParam String blogger, MultipartFile file){
+		return bloggerService.saveWithFile(blogger, file);
+	}
+	
+	@PutMapping(value="/{id}")
 	public Blogger update(@PathVariable Long id, @RequestBody Blogger blogger){
 		return bloggerService.save(blogger);
 	}

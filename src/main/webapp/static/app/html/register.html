@@ -5,25 +5,77 @@
 		<form name="registerForm">
 			<div class="form-group">
 				<label for="username">Username</label> <input type="text"
-					class="form-control" id="username" placeholder="Username ..."
-					ng-minlength="2" ng-model="blogger.username" required>
+					class="form-control" ng-class="{'sb-input-invalid': registerForm.username.$invalid && registerForm.username.$touched}" 
+					name="username" id="username" placeholder="Username ..."
+					ng-minlength="2" ng-model="blogger.username" required autofocus>
+					<div ng-if="registerForm.username.$error.minlength && registerForm.username.$touched" class="sb-message-danger">
+						Username is too short!
+					</div>
+					<div ng-if="registerForm.username.$error.required && registerForm.username.$touched" class="sb-message-danger">
+						Username is required!			
+					</div>
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label> <input type="password"
-					class="form-control" id="password" placeholder="Password ..."
+					class="form-control" ng-class="{'sb-input-invalid': registerForm.password.$invalid && registerForm.password.$touched}" 
+					name="password" id="password" placeholder="Password ..."
 					ng-minlength="6" ng-model="blogger.password" required>
+					<div ng-if="registerForm.password.$error.minlength && registerForm.password.$touched" class="sb-message-danger">
+						Password is too short!
+					</div>
+					<div ng-if="registerForm.password.$error.required && registerForm.password.$touched" class="sb-message-danger">
+						Password is required!
+					</div>
 			</div>
 			<div class="form-group">
 				<label for="confirmPassword">Confirm Password</label> <input
-					type="password" class="form-control" id="confirmPassword"
+					type="password" class="form-control" ng-class="{'sb-input-invalid': registerForm.confirmPassword.$invalid && registerForm.confirmPassword.$touched}" 
+					name="confirmPassword" id="confirmPassword"
 					placeholder="Confirm Password ..." compare-to="blogger.password"
-					ng-minlength="6" ng-model="bloger.confirmPassword" required>
+					ng-minlength="6" ng-model="blogger.confirmPassword" required>
+					<div ng-if="registerForm.confirmPassword.$invalid && registerForm.confirmPassword.$touched" class="sb-message-danger">
+						Password confirm doesn't match password!
+					</div>
+					<div ng-if="registerForm.confirmPassword.$error.required && registerForm.confirmPassword.$touched" class="sb-message-danger">
+						Password confirm is required!
+					</div>
+			</div>
+			<div class="form-group">
+				<label for="fisrtName">First Name</label> <input type="text"
+					class="form-control" ng-class="{'sb-input-invalid': registerForm.firstName.$invalid && registerForm.firstName.$touched}" 
+					name="firstName" id="firstName" placeholder="FirstName ..."
+					ng-minlength="2" ng-model="blogger.firstName" required>
+					<div ng-if="registerForm.firstName.$error.minlength && registerForm.firstName.$touched" class="sb-message-danger">
+						First name is too Short!
+					</div>
+					<div ng-if="registerForm.firstName.$error.required && registerForm.firstName.$touched" class="sb-message-danger">
+						First name is required!
+					</div>
+			</div>
+			<div class="form-group">
+				<label for="lastName">Last Name</label> <input type="text"
+					class="form-control" ng-class="{'sb-input-invalid': registerForm.lastName.$invalid && registerForm.lastName.$touched}" 
+					name="lastName" id="lastName" placeholder="Last Name ..."
+					ng-minlength="2" ng-model="blogger.lastName" required>
+					<div ng-if="registerForm.lastName.$error.minlength && registerForm.lastName.$touched" class="sb-message-danger">
+						Last name is too short!
+					</div>
+					<div ng-if="registerForm.lastname.$error.required && registerForm.lastName.$touched" class="sb-message-danger">
+						Last name is required
+					</div>
 			</div>
 			<div class="form-group">
 				<label for="email">E-mail</label> <input type="text"
-					class="form-control" id="email" placeholder="E-mail ..."
+					class="form-control" ng-class="{'sb-input-invalid': registerForm.email.$invalid && registerForm.email.$touched}" 
+					name="email" id="email" placeholder="E-mail ..."
 					ng-minlength="3" ng-model="blogger.email" required 
 					pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})">
+					<div ng-if="registerForm.email.$invalid && registerForm.email.$touched" class="sb-message-danger">
+						Not a valid e-mail!
+					</div>
+					<div ng-if="registerForm.email.$error.required && registerForm.email.$touched" class="sb-message-danger">
+						E-mail is required!
+					</div>
 			</div>
 			<div class="form-group">
 				<label for="image">Image</label> <input type="file"
@@ -31,7 +83,7 @@
 					file-model="file" required>
 			</div>
 			<input type="submit" ng-class="{'sb-submit': !registerForm.$invalid, 'sb-submit-invalid': registerForm.$invalid }" 
-					value="Register" ng-disabled="registerForm.$invalid">
+					value="Register" ng-disabled="registerForm.$invalid" ng-click="register()">
 		</form>
 	</div>
 </div>

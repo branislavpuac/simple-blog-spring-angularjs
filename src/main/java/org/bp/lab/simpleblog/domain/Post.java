@@ -50,7 +50,7 @@ public class Post {
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="post")
 	private List<Comment> comments = new ArrayList<>();
 	
-	@JsonBackReference(value="blogger")
+	@JsonBackReference()
 	@ManyToOne
 	private Blogger blogger;
 	

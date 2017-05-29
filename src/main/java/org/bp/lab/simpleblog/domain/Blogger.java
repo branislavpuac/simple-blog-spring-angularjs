@@ -13,15 +13,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.bp.lab.simpleblog.enums.SystemRole;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Blogger {
 	
 	@Id
@@ -34,6 +37,14 @@ public class Blogger {
 	
 	@NotNull
 	private String password;
+	
+	@NotNull
+	@Size(min=2)
+	private String firstName;
+	
+	@NotNull
+	@Size(min=2)
+	private String lastName;
 	
 	@Lob
 	private byte[] image;
@@ -64,6 +75,18 @@ public class Blogger {
 	public String getPassword() {
 		return password;
 	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -92,6 +115,9 @@ public class Blogger {
 		this.posts = posts;
 	}
 	
-	
+	@PrePersist
+	public void setInitialSystemRole(){
+		this.systemRole = SystemRole.COMMON;
+	}
 
 }

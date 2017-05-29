@@ -18,7 +18,7 @@ public class UserDetailsImpl extends User {
 				AuthorityUtils.createAuthorityList(blogger.getSystemRole().toString()));
 		this.id = blogger.getId();
 		this.systemRole = blogger.getSystemRole();
-		this.displayName = blogger.getUsername();
+		this.displayName = blogger.getFirstName() + " " + blogger.getLastName();
 	}
 
 	public long getId() {

@@ -58,8 +58,8 @@ sharedControllers.controller('navigationController', function($scope, $http, $ro
 		var file = $scope.file
 		var fd = new FormData();
 		fd.append('file', file);
-		fd.append('bloger',angular.toJson($scope.bloger,true));
-		$http.post('api/users/file', fd, {
+		fd.append('blogger',angular.toJson($scope.blogger,true));
+		$http.post('api/bloggers/file', fd, {
 			transformRequest : angular.identity,
 			headers : {
 			'Content-Type' : undefined

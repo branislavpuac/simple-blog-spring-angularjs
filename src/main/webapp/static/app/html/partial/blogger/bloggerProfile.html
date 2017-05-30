@@ -1,21 +1,22 @@
 <div>
 	<div>
-		<div class="row" ng-init="getOne();page=0,size=10;getPostsByBloggerId()">
+		<div class="row" ng-init="getOne();page=0;size=10;getPostsByBloggerId()">
 			<div>
-				<div class="col-md-4">
-					
+				<div class="col-md-2">
+					<img class="media-object" src="data:image/jpg;base64,{{blogger.image}}" alt="..." width="130">
 				</div>
-				<div class="col-md-8">
-					<li>
-						<ul><b>Username:</b> {{blogger.username }}</ul>
-						<ul><b>First Name:</b> {{ blogger.firstName }}</ul>
-						<ul><b>Last Name:</b> {{ blogger.lastName }}</ul>
-						<ul><b>System Role:</b> {{ blogger.systemRole }}</ul>
-						<ul><b>Email:</b> {{ blogger.email }}</ul>
-					</li>
+				<div class="col-md-10">
+					<ul class="list-unstyled">
+						<li><b>Username:</b> {{blogger.username }}</li>
+						<li><b>First Name:</b> {{ blogger.firstName }}</li>
+						<li><b>Last Name:</b> {{ blogger.lastName }}</li>
+						<li><b>System Role:</b> {{ blogger.systemRole }}</li>
+						<li><b>Email:</b> {{ blogger.email }}</li>
+					</ul>
 				</div>
 			</div>
 		</div>
+		<br>
 		<div class="row">
 			<table class="table">
 				<tr>
@@ -24,11 +25,11 @@
 					<th>Created</th>
 					<th>Updated</th>
 				</tr>
-				<tr ng-repeat="post in posts">
+				<tr ng-repeat="post in posts" class="sb-pointer" ng-click="editPost(post.id)">
 					<td>{{ post.id }}</td>
 					<td>{{ post.headline }}</td>
-					<td>{{ post.created }}</td>
-					<td>{{ post.updated }}</td>
+					<td>{{ post.created | date: 'short' }}</td>
+					<td>{{ post.updated | date: 'short' }}</td>
 				</tr>
 			</table>
 		</div>

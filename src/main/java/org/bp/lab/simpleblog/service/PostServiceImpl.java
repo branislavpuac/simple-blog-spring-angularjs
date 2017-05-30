@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.bp.lab.simpleblog.domain.Post;
 import org.bp.lab.simpleblog.repository.PostRepository;
+import org.bp.lab.simpleblog.support.PostDTOToPost;
+import org.bp.lab.simpleblog.web.dto.PostDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +23,9 @@ public class PostServiceImpl implements PostService{
 	
 	@Autowired
 	PostRepository postRepository;
+	
+	@Autowired
+	PostDTOToPost toPost;
 
 	@Override
 	public Page<Post> findAll(int page, int size) {
@@ -46,9 +51,9 @@ public class PostServiceImpl implements PostService{
 	public Post saveWithFile(String post, MultipartFile file) {
 		
 		ObjectMapper mapper = new ObjectMapper();
-		Post postToPersist = new Post();
+		PostDTO postToPersist = new PostDTO();
 		try {
-			postToPersist = mapper.readValue(post, Post.class);
+			postToPersist = mapper.readValue(post, PostDTO.class);
 			postToPersist.setImage(file.getBytes());
 		} catch (JsonParseException e) {
 			e.printStackTrace();
@@ -57,7 +62,7 @@ public class PostServiceImpl implements PostService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return postRepository.save(postToPersist);
+		return postRepository.save(toPost.convert(postToPersist));
 	}
 
 	@Override

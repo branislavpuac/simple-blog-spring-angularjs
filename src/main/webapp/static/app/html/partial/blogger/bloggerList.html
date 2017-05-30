@@ -9,7 +9,7 @@
 				<th>Posts</th>
 				<th>Actions</th>
 			</tr>
-			<tr ng-repeat="blogger in bloggers">
+			<tr ng-repeat="blogger in bloggers" class="sb-pointer" ng-click="showBlogger(blogger.id)">
 				<td>{{ blogger.id }}</td>
 				<td>{{ blogger.firstName }}</td>
 				<td>{{ blogger.lastName }}</td>

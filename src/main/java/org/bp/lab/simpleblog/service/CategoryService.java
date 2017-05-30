@@ -10,6 +10,7 @@ public interface CategoryService {
 	List<Category> findAll();
 	Page<Category> getPage(int page, int size);
 	Category findOne(Long id);
+	Category findByName(String name);
 	Category save(Category category);
 	void delete(Long id);
 

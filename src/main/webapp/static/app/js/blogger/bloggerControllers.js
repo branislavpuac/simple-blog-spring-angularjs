@@ -1,6 +1,6 @@
 var blog = angular.module('bloggerControllers', []);
 
-blog.controller('bloggerController', function($scope, bloggerService, $routeParams, postService){
+blog.controller('bloggerController', function($scope, bloggerService, $routeParams, postService, $location){
 	
 	$scope.getPage = function(){
 		bloggerService.getPage($scope.page, $scope.size)
@@ -28,5 +28,13 @@ blog.controller('bloggerController', function($scope, bloggerService, $routePara
 				
 			});
 	};
+	
+	$scope.editPost = function(id){
+		$location.path('/addEditPost/' + id);
+	}
+	
+	$scope.showBlogger = function(id){
+		$location.path('/bloggers/' + id);
+	}
 	
 });

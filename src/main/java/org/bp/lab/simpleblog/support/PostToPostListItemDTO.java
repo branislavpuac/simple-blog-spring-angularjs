@@ -29,7 +29,10 @@ public class PostToPostListItemDTO implements Converter<Page<Post>, Page<PostLis
 			postListItemDTO.setComments(p.getComments().size());
 			postListItemDTOs.add(postListItemDTO);
 		}
-		return new PageImpl<>(postListItemDTOs, new PageRequest(posts.getNumber(), posts.getNumberOfElements()), posts.getTotalElements());
+		if(postListItemDTOs.size() > 0){
+			return new PageImpl<>(postListItemDTOs, new PageRequest(posts.getNumber(), posts.getNumberOfElements()), posts.getTotalElements());
+		}
+		return null;		
 	}
 
 }

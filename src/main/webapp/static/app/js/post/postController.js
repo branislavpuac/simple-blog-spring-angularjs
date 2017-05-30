@@ -1,6 +1,6 @@
 var blog = angular.module('blog.controllers', [])
 
-blog.controller('postController', function($scope, postService, $routeParams){
+blog.controller('postController', function($scope, postService, $routeParams, categoryService){
 	
 	$scope.post = {};
 	
@@ -16,12 +16,14 @@ blog.controller('postController', function($scope, postService, $routeParams){
 	};
 
 	$scope.getOne = function(){
-		postService.getOne($routeParams.id)
-			.then(function success(response){
-				$scope.post = response.data;
-			}, function error(){
-				
-			});
+		if ($routeParams.id) {
+			postService.getOne($routeParams.id).then(
+				function success(response) {
+					$scope.post = response.data;
+				}, function error() {
+
+				});
+		}
 	};
 	
 	$scope.saveWithFile = function(){
@@ -36,5 +38,14 @@ blog.controller('postController', function($scope, postService, $routeParams){
 				
 			});
 	};
+	
+	$scope.getCategories = function(){
+		categoryService.getAll()
+			.then(function success(response){
+				$scope.categories = response.data;
+			}, function error(response){
+				
+			})
+	}
 	
 });

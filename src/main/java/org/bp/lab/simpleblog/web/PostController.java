@@ -2,7 +2,9 @@ package org.bp.lab.simpleblog.web;
 
 import org.bp.lab.simpleblog.domain.Post;
 import org.bp.lab.simpleblog.service.PostService;
+import org.bp.lab.simpleblog.support.PostToPostDTO;
 import org.bp.lab.simpleblog.support.PostToPostListItemDTO;
+import org.bp.lab.simpleblog.web.dto.PostDTO;
 import org.bp.lab.simpleblog.web.dto.PostListItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,22 +30,25 @@ public class PostController {
 	@Autowired
 	PostToPostListItemDTO toPostListItemDTO;
 	
-	@GetMapping(params={"id", "page", "size"})
+	@Autowired
+	PostToPostDTO toDTO;
+	
+	@GetMapping(params={"page", "size"})
 	public Page<PostListItemDTO> findAll(@RequestParam(defaultValue = "0", required = false) int page,
 			@RequestParam(defaultValue = "10", required = false) int size) {
 		return toPostListItemDTO.convert(postService.findAll(page, size));
 	}
 	
-	@GetMapping
+	@GetMapping(params={"id", "page", "size"})
 	public  Page<PostListItemDTO> findAllByBloggerId(@RequestParam Long id, 
-			@RequestParam (defaultValue="0")int page, 
-			@RequestParam (defaultValue="10") int size){
+			@RequestParam(defaultValue="0") int page, 
+			@RequestParam(defaultValue="10") int size){
 		return toPostListItemDTO.convert(postService.findAllByBloggerId(id, page, size));
 	}
 	
 	@GetMapping(value="/{id}")
-	public Post findOne(@PathVariable Long id){
-		return postService.findOne(id);
+	public PostDTO findOne(@PathVariable Long id){
+		return toDTO.convert(postService.findOne(id));
 	}
 	
 	@PostMapping(consumes="application/json")

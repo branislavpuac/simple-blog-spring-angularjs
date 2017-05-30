@@ -1,5 +1,5 @@
 <div>
-	<div class="row">
+	<div class="row" ng-init="getCategories();getOne()">
 		<div class="col-md-12">
 			<button class="btn btn-success" ng-click="saveWithFile()" ng-hide="post.id">Save Post</button>
 			<button class="btn btn-success" ng-click="saveWithWile()" ng-show="post.id">Update Post</button>
@@ -9,7 +9,7 @@
    					<label for="category" class="col-md-2 control-label">Category</label>
     				<div class="col-sm-10">
       					<select class="form-control" id="category" ng-model="post.category">
-      					<option>Category</option>
+      					<option ng-repeat="category in categories">{{ category.name }}</option>
       					</select>
     				</div>
   			    </div>

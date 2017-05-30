@@ -4,6 +4,10 @@ blog.service('categoryService', function($http){
 	
 	this.url = '/api/categories';
 	
+	this.getAll = function(){
+		return $http.get(this.url);
+	};
+	
 	this.getPage = function(page, size){
 		return $http.get(this.url, { params: { 'page': page, 'size': size }});
 	};

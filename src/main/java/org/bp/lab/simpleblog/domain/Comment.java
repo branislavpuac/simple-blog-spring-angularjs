@@ -36,7 +36,7 @@ public class Comment {
 	private int negative;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value="post")
 	private Post post;
 	
 	@PrePersist

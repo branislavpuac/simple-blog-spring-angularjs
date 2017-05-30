@@ -5,7 +5,6 @@ blog.controller('commentController', function($scope, commentService, $routePara
 	$scope.likeClass = ['glyphicon', 'glyphicon-thumbs-up', 'sb-pointer'];
 	
 	$scope.getPage = function(){
-		console.log($routeParams.id)
 		commentService.getPage($scope.page, $scope.size, $routeParams.id)
 			.then(function success(response){
 				$scope.comments = response.data.content;
@@ -26,7 +25,6 @@ blog.controller('commentController', function($scope, commentService, $routePara
 	};
 	
 	$scope.updateLike = function(comment, index, choice){
-		console.log(event);
 		if(choice == 1){
 			comment.positive = comment.positive + 1;
 		}else{

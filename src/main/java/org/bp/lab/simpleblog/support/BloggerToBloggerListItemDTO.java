@@ -16,7 +16,7 @@ public class BloggerToBloggerListItemDTO implements Converter<Page<Blogger>, Pag
 
 	@Override
 	public Page<BloggerListItemDTO> convert(Page<Blogger> bloggersPage) {
-		List<BloggerListItemDTO> bloggersList = new ArrayList();
+		List<BloggerListItemDTO> bloggersList = new ArrayList<>();
 		for(Blogger blogger: bloggersPage.getContent()){
 		BloggerListItemDTO bloggerDTO = new BloggerListItemDTO();
 		bloggerDTO.setId(blogger.getId());

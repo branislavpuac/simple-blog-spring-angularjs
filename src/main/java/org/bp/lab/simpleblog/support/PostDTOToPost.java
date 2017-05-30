@@ -1,6 +1,5 @@
 package org.bp.lab.simpleblog.support;
 
-import org.bp.lab.simpleblog.domain.Category;
 import org.bp.lab.simpleblog.domain.Post;
 import org.bp.lab.simpleblog.service.CategoryService;
 import org.bp.lab.simpleblog.web.dto.PostDTO;

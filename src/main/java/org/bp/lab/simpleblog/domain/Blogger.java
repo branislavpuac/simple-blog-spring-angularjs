@@ -20,10 +20,10 @@ import javax.validation.constraints.Size;
 
 import org.bp.lab.simpleblog.enums.SystemRole;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown=true)
@@ -38,7 +38,7 @@ public class Blogger {
 	private String username;
 	
 	@NotNull
-	@JsonIgnore
+	@JsonProperty(access=Access.WRITE_ONLY)
 	private String password;
 	
 	@NotNull
@@ -59,7 +59,7 @@ public class Blogger {
 	@Enumerated(EnumType.STRING)
 	private SystemRole systemRole;
 	
-	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="blogger")
 	private List<Post> posts = new ArrayList<>();
 	

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CommentService {
 	
-	List<Comment> findAll();
+	Page<Comment> findAll(int page, int size);
 	Page<Comment> findAllWherePostId(Long id, int page, int size);
 	List<Comment> getAllPostComments(Long postId);
 	Comment findOne(Long id);

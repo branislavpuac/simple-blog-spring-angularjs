@@ -5,11 +5,13 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -25,6 +27,8 @@ public class Comment {
 	
 	private String headline;
 	
+	@Lob
+	@Type(type="text")
 	private String text;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -35,6 +39,8 @@ public class Comment {
 	
 	private int negative;
 	
+	private boolean published;
+	
 	@ManyToOne
 	@JsonBackReference(value="post")
 	private Post post;
@@ -44,6 +50,7 @@ public class Comment {
 		created = new Date();
 		positive = 0;
 		negative = 0;
+		published = false;
 	}
 	
 	public Long getId() {
@@ -102,5 +109,12 @@ public class Comment {
 		this.post = post;
 	}
 
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
 	
 }

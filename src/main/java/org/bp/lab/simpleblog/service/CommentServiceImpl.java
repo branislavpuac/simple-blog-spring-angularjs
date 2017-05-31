@@ -22,8 +22,8 @@ public class CommentServiceImpl implements CommentService{
 	PostService postService;
 
 	@Override
-	public List<Comment> findAll() {
-		return commentRepository.findAll();
+	public Page<Comment> findAll(int page, int size) {
+		return commentRepository.findAll(new PageRequest(page, size));
 	}
 	
 	@Override

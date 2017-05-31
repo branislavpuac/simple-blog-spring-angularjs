@@ -5,7 +5,8 @@ blog.controller('categoryController', function($scope, $routeParams, categorySer
 	$scope.getPage = function(){
 		categoryService.getPage($scope.page, $scope.size)
 			.then(function success(response){
-				$scope.categories = response.data;
+				$scope.categories = response.data.content;
+				$scope.totalItems = response.data.totalElements;
 			}, function error(response){
 				
 			});
@@ -43,5 +44,15 @@ blog.controller('categoryController', function($scope, $routeParams, categorySer
 			});
 			
 	};
+	
+//pagination
+	
+	$scope.pageChanged = function() {
+		$log.log('Page changed to: ' + $scope.currentPage);
+	};
+
+	$scope.maxSize = 5;
+	$scope.totalItems = 175;
+	$scope.currentPage = $scope.page + 1;
 	
 });

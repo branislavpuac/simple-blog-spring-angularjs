@@ -12,12 +12,20 @@ blog.service('commentService', function($http){
 		return $http.get(this.url, { params: { 'postId': postId }});
 	};
 	
+	this.findAll = function(page, size){
+		return $http.get(this.url, { params: { 'page': page, 'size': size }});
+	};
+	
 	this.save = function(comment, postId){
 		if(comment.id){
 			return $http.put(this.url + '/' + comment.id, comment, { params: { 'postId': postId }});
 		}else{
 			return $http.post(this.url, comment, { params: { 'postId': postId }});
 		}
+	};
+	
+	this.delete = function(id){
+		return $http.delete('this.url' + '/' + id);
 	};
 	
 });

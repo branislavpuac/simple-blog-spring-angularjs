@@ -22,9 +22,9 @@ public class CommentController {
 	@Autowired
 	CommentService commentService;
 	
-	@GetMapping
-	public List<Comment> findAll(){
-		return commentService.findAll();
+	@GetMapping(params={ "page", "size" })
+	public Page<Comment> findAll(int page, int size){
+		return commentService.findAll(page, size);
 	}
 	
 	@GetMapping(params = { "page", "size", "postId" })
@@ -34,7 +34,7 @@ public class CommentController {
 		return commentService.findAllWherePostId(postId, page, size);
 	}
 	
-	@GetMapping(value="/{postId}", params="postId")
+	@GetMapping(params="postId")
 	public List<Comment> getAllPostComments(Long postId){
 		return commentService.getAllPostComments(postId);
 	}

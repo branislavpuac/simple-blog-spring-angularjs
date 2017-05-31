@@ -1,12 +1,18 @@
-<div class="container col-md-12" ng-init="page=0;size=5;getPage()">
-	<div class="col-md-12">
-		<table class="table">
+<div>
+	<div>
+		<a href="#!/postsAdmin"><button class="btn btn-xs btn-primary">Posts</button></a>
+		<a href="#!/bloggers"><button class="btn btn-xs btn-primary">Bloggers</button></a>
+		<a href="#!/commentsAdmin"><button class="btn btn-xs btn-primary">Comments</button></a>
+		<a href="#!/categories"><button class="btn btn-xs btn-primary active">Categories</button></a>
+	</div>
+	<div>
+		<table class="table" ng-init="page=0;size=5;getPage()">
 			<tr>
 				<th>Id</th>
 				<th>Name</th>
 				<th>Actions</th>
 			</tr>
-			<tr ng-repeat="category in categories">
+			<tr ng-repeat="category in categories" class="sb-pointer">
 				<td>{{ category.id }}</td>
 				<td>{{ category.name }}</td>
 				<td>
@@ -15,5 +21,8 @@
 				</td>
 			</tr>
 		</table>
+		<div class="text-center">
+		<ul uib-pagination total-items="totalItems" items-per-page="size" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages"></ul>
+		</div>
 	</div>
 </div>

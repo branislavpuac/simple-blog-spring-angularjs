@@ -33,7 +33,13 @@ public class PostController {
 	@Autowired
 	PostToPostDTO toDTO;
 	
-	@GetMapping(params={"page", "size"})
+	@GetMapping(params={ "page", "size" })
+	public Page<PostListItemDTO> getPage(@RequestParam(defaultValue="0")int page, 
+			@RequestParam(defaultValue="10") int size){
+		return toPostListItemDTO.convert(postService.findAllPublishedAndApproved(page, size));
+	}
+	
+	@GetMapping(value="/admin", params={"page", "size"})
 	public Page<PostListItemDTO> findAll(@RequestParam(defaultValue = "0", required = false) int page,
 			@RequestParam(defaultValue = "10", required = false) int size) {
 		return toPostListItemDTO.convert(postService.findAll(page, size));

@@ -28,7 +28,7 @@ public class CategoryController {
 		return categoryService.findAll();
 	}
 	
-	@GetMapping(params = { "page, size" })
+	@GetMapping(params = { "page", "size" })
 	public Page<Category> getPage(@RequestParam(defaultValue = "0", required = false) int page,
 			@RequestParam(defaultValue = "5", required = false) int size) {
 		return categoryService.getPage(page, size);

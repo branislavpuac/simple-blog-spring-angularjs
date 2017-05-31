@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 	
+	Page<Post> findAllByPublishedAndApproved(boolean published, boolean approved, Pageable pagebale);
 	Page<Post> findAllByBloggerId(Long id, Pageable pageable);
 
 }

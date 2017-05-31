@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BloggerRepository extends JpaRepository<Blogger, Long> {
 	
-	public Optional<Blogger> findByUsername(String username);
+	Optional<Blogger> findByUsername(String username);
 
 }

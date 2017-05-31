@@ -6,6 +6,7 @@ blog.controller('bloggerController', function($scope, bloggerService, $routePara
 		bloggerService.getPage($scope.page, $scope.size)
 			.then(function success(response){
 				$scope.bloggers = response.data.content;
+				$scope.totalItems = response.data.totalElements;
 			}, function error(response){
 				
 			});
@@ -24,6 +25,7 @@ blog.controller('bloggerController', function($scope, bloggerService, $routePara
 		postService.getPostsByBloggerId($routeParams.id, $scope.page, $scope.size)
 			.then(function success(response){
 				$scope.posts = response.data.content
+				$scope.totalItems = response.data.totalElements;
 			}, function error(response){
 				
 			});
@@ -36,5 +38,16 @@ blog.controller('bloggerController', function($scope, bloggerService, $routePara
 	$scope.showBlogger = function(id){
 		$location.path('/bloggers/' + id);
 	}
+	
+	//pagination
+	
+	$scope.pageChanged = function() {
+		$log.log('Page changed to: ' + $scope.currentPage);
+	};
+
+	$scope.maxSize = 5;
+	$scope.totalItems = 175;
+	$scope.currentPage = $scope.page + 1;
+		
 	
 });

@@ -27,6 +27,8 @@ public class PostToPostListItemDTO implements Converter<Page<Post>, Page<PostLis
 			postListItemDTO.setCreated(p.getCreated());
 			postListItemDTO.setUpdated(p.getUpdated());
 			postListItemDTO.setComments(p.getComments().size());
+			postListItemDTO.setPublished(p.isPublished());
+			postListItemDTO.setApproved(p.isApproved());
 			postListItemDTOs.add(postListItemDTO);
 		}
 		if(postListItemDTOs.size() > 0){

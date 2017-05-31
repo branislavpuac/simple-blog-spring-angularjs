@@ -17,11 +17,13 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.bp.lab.simpleblog.enums.SystemRole;
 import org.bp.lab.simpleblog.security.UserDetailsImpl;
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -33,6 +35,8 @@ public class Post {
 	
 	private String headline;
 	
+	@Lob
+	@Type(type="text")
 	private String text;
 	
 	private String author;
@@ -52,19 +56,28 @@ public class Post {
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="post")
 	private List<Comment> comments = new ArrayList<>();
 	
-	@JsonBackReference(value="blogger")
+	@JsonIgnore
 	@ManyToOne
 	private Blogger blogger;
 	
-	@JsonBackReference(value="category")
+	@JsonIgnore
 	@ManyToOne
 	private Category category;
+	
+	private boolean published;
+	
+	private boolean approved;
 	
 	@PrePersist
 	protected void onCreate(){
 		created = new Date();
 		UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		author = userDetails.getDisplayName();
+		if(userDetails.getSystemRole().equals(SystemRole.ADMIN)){
+			approved = true;
+		}else{
+			approved = false;
+		}
 	}
 	@PreUpdate
 	public void onUpdate(){
@@ -124,6 +137,17 @@ public class Post {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
+	public boolean isPublished() {
+		return published;
+	}
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
+	public boolean isApproved() {
+		return approved;
+	}
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
 	
 }

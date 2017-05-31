@@ -1,6 +1,6 @@
 var blog = angular.module('blog.controllers', [])
 
-blog.controller('postController', function($scope, postService, $routeParams, categoryService){
+blog.controller('postController', function($scope, postService, $routeParams, categoryService, $location){
 	
 	$scope.post = {};
 	
@@ -10,6 +10,7 @@ blog.controller('postController', function($scope, postService, $routeParams, ca
 		postService.getPage($scope.page, $scope.size)
 			.then(function success(response){
 				$scope.posts = response.data.content;
+				$scope.totalItems = response.data.totalElements;
 			}, function error(response){
 				
 			});
@@ -39,6 +40,15 @@ blog.controller('postController', function($scope, postService, $routeParams, ca
 			});
 	};
 	
+	$scope.delete = function(id){
+		postService.delete(id)
+			.then(function success(response){
+				$scope.getPage();
+			}, function error(response){
+				
+			});
+	}
+	
 	$scope.getCategories = function(){
 		categoryService.getAll()
 			.then(function success(response){
@@ -47,5 +57,17 @@ blog.controller('postController', function($scope, postService, $routeParams, ca
 				
 			})
 	}
+	
+	//pagination
+	
+	$scope.pageChanged = function() {
+		$scope.page = $scope.currentPage -1;
+		$scope.getPage();
+//		$log.log('Page changed to: ' + $scope.currentPage);
+	};
+
+	$scope.maxSize = 5;
+	$scope.totalItems = 175;
+	$scope.currentPage = 1;
 	
 });

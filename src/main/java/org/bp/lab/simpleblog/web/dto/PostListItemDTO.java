@@ -12,6 +12,9 @@ public class PostListItemDTO {
 	private Date created;
 	private Date updated;
 	private int comments;
+	private boolean published;
+	private boolean approved;
+	
 	public Long getId() {
 		return id;
 	}
@@ -60,7 +63,17 @@ public class PostListItemDTO {
 	public void setComments(int comments) {
 		this.comments = comments;
 	}
-	
-	
+	public boolean isPublished() {
+		return published;
+	}
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
+	public boolean isApproved() {
+		return approved;
+	}
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
 
 }

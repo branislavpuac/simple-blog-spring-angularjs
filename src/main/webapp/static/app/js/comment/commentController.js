@@ -8,7 +8,7 @@ blog.controller('commentController', function($scope, commentService, $routePara
 		commentService.getPage($scope.page, $scope.size, $routeParams.id)
 			.then(function success(response){
 				$scope.comments = response.data.content;
-				$scope.totalComments = response.data.totalElements;
+				$scope.totalItems = response.data.totalElements;
 			}, function error(response){
 				
 			});
@@ -24,6 +24,16 @@ blog.controller('commentController', function($scope, commentService, $routePara
 			});
 	};
 	
+	$scope.findAll = function(){
+		commentService.findAll($scope.page, $scope.size)
+			.then(function success(response){
+				$scope.comments = response.data.content
+				$scope.totalItems = response.data.totalElements;
+			}, function error(response){
+				
+			});
+	}
+	
 	$scope.updateLike = function(comment, index, choice){
 		if(choice == 1){
 			comment.positive = comment.positive + 1;
@@ -38,5 +48,24 @@ blog.controller('commentController', function($scope, commentService, $routePara
 				
 			});
 	};
+	
+	$scope.delete = function(id){
+		commentService.delete(id)
+			.then(function success(response){
+				$scope.getPage();
+			}, function error(response){
+				
+			});
+	};
+	
+	//pagination
+	
+	$scope.pageChanged = function() {
+		$log.log('Page changed to: ' + $scope.currentPage);
+	};
+
+	$scope.maxSize = 5;
+	$scope.totalItems = 175;
+	$scope.currentPage = $scope.page + 1;
 	
 });

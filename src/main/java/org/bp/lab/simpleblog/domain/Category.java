@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Category {
@@ -21,7 +21,7 @@ public class Category {
 	
 	private String name;
 	
-	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="category")
 	private List<Post> posts = new ArrayList<>();
 

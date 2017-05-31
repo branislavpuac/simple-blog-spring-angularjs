@@ -1,4 +1,5 @@
 var blog = angular.module('blog', ['ngRoute',
+									'ui.bootstrap',
 									'blog.services',
 									'blog.controllers',
 									'commentControllers',
@@ -15,6 +16,10 @@ blog.config(function($routeProvider, $httpProvider) {
 	$routeProvider
 	.when('/home', {
 		templateUrl: '/static/app/html/partial/post/postList.html',
+		controller: 'postController'
+	})
+	.when('/postsAdmin', {
+		templateUrl: '/static/app/html/partial/post/postListAdmin.html',
 		controller: 'postController'
 	})
 	.when('/post/:id', {
@@ -43,6 +48,10 @@ blog.config(function($routeProvider, $httpProvider) {
 	})
 	.when('/comments/:id', {
 		templateUrl: '/static/app/html/partial/comment/commentList.html',
+		controller: 'commentController'
+	})
+	.when('/commentsAdmin', {
+		templateUrl: '/static/app/html/partial/comment/commentListAdmin.html',
 		controller: 'commentController'
 	})
 	.when('/bloggers', {

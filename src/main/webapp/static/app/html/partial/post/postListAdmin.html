@@ -6,7 +6,7 @@
 		<a href="#!/categories"><button class="btn btn-xs btn-primary">Categories</button></a>
 	</div>
 	<div>
-		<table class="table" ng-init="page=0;size=5;getPage()">
+		<table class="table" ng-init="init();page=0;size=5;findAll()">
 			<tr>
 				<th>Id</th>
 				<th>Published</th>
@@ -27,7 +27,7 @@
 			</tr>
 		</table>
 		<div class="text-center">
-		<ul uib-pagination total-items="totalItems" items-per-page="size" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="pageChanged()"></ul>
+		<ul uib-pagination total-items="adminTotalItems" items-per-page="size" ng-model="adminCurrentPage" max-size="adminMaxSize" class="pagination-sm" boundary-links="true" num-pages="numPages" ng-change="adminPageChanged()"></ul>
 		</div>
 	</div>
 </div>

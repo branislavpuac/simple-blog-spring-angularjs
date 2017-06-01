@@ -19,7 +19,11 @@
 <script src="/static/app/js/sharedDirectives.js"></script>
 <link rel="stylesheet" href="/static/assets/css/bootstrap.css">
 <link rel="stylesheet" href="/static/app/css/custom.css">
-
+<style type="text/css">
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+</style>
 </head>
 <body ng-app="blog">
 	<header>
@@ -52,7 +56,7 @@
 	<br>
 	<br>
 	<div class="container">
-		<div class="row">
+		<div class="row" class="ng-cloak">
 			<div class="col-md-9 sb-content" ng-view>
 		</div>
 		<div class="col-md-3">

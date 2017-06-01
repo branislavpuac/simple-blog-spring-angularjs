@@ -8,6 +8,10 @@ blog.service('postService', function($http){
 		return $http.get(this.url, { params: { 'page': page, 'size': size} });
 	};
 	
+	this.findAll = function(page, size) {
+		return $http.get(this.url + '/admin', { params: { 'page': page, 'size': size }});
+	};
+	
 	this.getPostsByBloggerId = function(id, page, size){
 		return $http.get(this.url, {params: { 'id': id, 'page': page, 'size': size }});
 	};

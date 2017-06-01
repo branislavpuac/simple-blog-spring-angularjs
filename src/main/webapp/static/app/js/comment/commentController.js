@@ -1,6 +1,16 @@
 var blog = angular.module('commentControllers', []);
 
-blog.controller('commentController', function($scope, commentService, $routeParams){
+blog.controller('commentController', function($rootScope, $scope, commentService, $routeParams, $location){
+	
+	function init(){
+		var path = $location.$$path;
+		if((path == '/commentsAdmin' || 
+				path.startsWith('/editComment')) && 
+				(!$rootScope.currentBlogger || 
+						$rootScope.currentBlogger.systemRole != 'ADMIN')){
+			$location.path('/home');
+		}
+	};
 	
 	$scope.likeClass = ['glyphicon', 'glyphicon-thumbs-up', 'sb-pointer'];
 	
@@ -67,5 +77,7 @@ blog.controller('commentController', function($scope, commentService, $routePara
 	$scope.maxSize = 5;
 	$scope.totalItems = 175;
 	$scope.currentPage = $scope.page + 1;
+	
+	init();
 	
 });

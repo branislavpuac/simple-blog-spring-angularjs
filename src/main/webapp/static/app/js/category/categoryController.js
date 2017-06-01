@@ -1,6 +1,16 @@
 var blog = angular.module('categoryControllers', []);
 
-blog.controller('categoryController', function($scope, $routeParams, categoryService){
+blog.controller('categoryController', function($rootScope, $scope, $routeParams, categoryService, $location){
+	
+	function init(){
+		var path = $location.$$path;
+		if(path == '/categories' || 
+				path.startsWith('/addEditCategory') && 
+				(!$rootScope.currentBlogger || 
+						$rootScope.currentBlogger != 'ADMIN')){
+			$location.path('/home');
+		}
+	}
 	
 	$scope.getPage = function(){
 		categoryService.getPage($scope.page, $scope.size)
@@ -54,5 +64,7 @@ blog.controller('categoryController', function($scope, $routeParams, categorySer
 	$scope.maxSize = 5;
 	$scope.totalItems = 175;
 	$scope.currentPage = $scope.page + 1;
+	
+	init();
 	
 });

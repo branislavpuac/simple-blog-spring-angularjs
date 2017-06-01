@@ -1,6 +1,21 @@
 var blog = angular.module('bloggerControllers', []);
 
-blog.controller('bloggerController', function($scope, bloggerService, $routeParams, postService, $location){
+blog.controller('bloggerController', function($rootScope, $scope, bloggerService, $routeParams, postService, $location){
+	
+	function init(){
+		var path = $location.$$path;
+		if(path == '/bloggers' && 
+				(!$rootScope.currentBlogger || 
+						$rootScope.currentBlogger.systemRole != 'ADMIN')) {
+			$location.path('/home');
+		}else if($routeParams.id && 
+				(!$rootScope.currentBlogger || 
+						($rootScope.currentBlogger.systemRole != 'ADMIN' && 
+								$rootScope.currentBlogger.id != $routeParams.id))){
+			$location.path('/home');
+		}
+		console.log($rootScope.currentBlogger)
+	};
 	
 	$scope.getPage = function(){
 		bloggerService.getPage($scope.page, $scope.size)
@@ -49,5 +64,5 @@ blog.controller('bloggerController', function($scope, bloggerService, $routePara
 	$scope.totalItems = 175;
 	$scope.currentPage = $scope.page + 1;
 		
-	
+	init();
 });

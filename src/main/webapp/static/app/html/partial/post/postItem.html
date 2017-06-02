@@ -20,7 +20,16 @@
 	</div>
 	<div ng-controller="commentController">
 		<div class="row sb-comments-top" ng-init="page=0;size=4;getPage(post.id)">
-			<p><b>COMMENTS {{ totalComments }}</b></p>
+			<p><b>COMMENTS {{ totalItems }}</b></p>
+		</div>
+		<div class="row">
+			<br>
+			<div class="col-sm-3 col-sm-offset-2 sb-comment-button sb-pointer text-center">
+				Add Comment
+			</div>
+			<div class="col-sm-3 col-sm-offset-2 sb-comment-button sb-pointer text-center" ng-click="showAllComments()">
+				Show All Comments
+			</div>
 		</div>
 		<div class="row">
 			<div class="well col-md-12">

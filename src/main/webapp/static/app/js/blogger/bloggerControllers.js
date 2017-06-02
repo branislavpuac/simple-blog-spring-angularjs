@@ -14,7 +14,6 @@ blog.controller('bloggerController', function($rootScope, $scope, bloggerService
 								$rootScope.currentBlogger.id != $routeParams.id))){
 			$location.path('/home');
 		}
-		console.log($rootScope.currentBlogger)
 	};
 	
 	$scope.getPage = function(){

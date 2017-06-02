@@ -2,7 +2,7 @@ var blog = angular.module('blog.controllers', [])
 
 blog.controller('postController', function($rootScope, $scope, postService, $routeParams, categoryService, $location){
 	
-	$scope.init = function(){
+	function init(){
 		var path = $location.$$path;
 		if(path == '/postsAdmin' && (!$rootScope.currentBlogger ||  ($rootScope.currentBlogger && $rootScope.currentBlogger.systemRole != 'ADMIN'))) {
 			$location.path('/home');
@@ -98,5 +98,7 @@ blog.controller('postController', function($rootScope, $scope, postService, $rou
 	$scope.adminMaxSize = 5;
 	$scope.adminTotalItems = 175;
 	$scope.adminCurrentPage = 1;
+	
+	init();
 	
 });

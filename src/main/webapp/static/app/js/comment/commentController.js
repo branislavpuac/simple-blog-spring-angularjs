@@ -68,6 +68,10 @@ blog.controller('commentController', function($rootScope, $scope, commentService
 			});
 	};
 	
+	$scope.showAllComments = function(){
+		$location.path('/comments/' + $routeParams.id);
+	};
+	
 	//pagination
 	
 	$scope.pageChanged = function() {

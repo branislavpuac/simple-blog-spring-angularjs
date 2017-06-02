@@ -77,3 +77,4 @@ blog.config(function($routeProvider, $httpProvider) {
 	$httpProvider.defaults.headers.common['x-Requested-With'] = 'XMLHttpRequest';
 	
 });
+	  

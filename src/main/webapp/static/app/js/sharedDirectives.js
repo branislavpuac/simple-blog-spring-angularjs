@@ -32,4 +32,3 @@ blog.directive('compareTo', [
     };
   }
 ]);
-

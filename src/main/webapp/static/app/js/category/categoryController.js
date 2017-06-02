@@ -4,10 +4,10 @@ blog.controller('categoryController', function($rootScope, $scope, $routeParams,
 	
 	function init(){
 		var path = $location.$$path;
-		if(path == '/categories' || 
-				path.startsWith('/addEditCategory') && 
+		if((path == '/categories' || 
+				path.startsWith('/addEditCategory')) && 
 				(!$rootScope.currentBlogger || 
-						$rootScope.currentBlogger != 'ADMIN')){
+						$rootScope.currentBlogger.systemRole != 'ADMIN')){
 			$location.path('/home');
 		}
 	}

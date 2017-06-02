@@ -25,7 +25,7 @@
 }
 </style>
 </head>
-<body ng-app="blog">
+<body ng-app="blog" ng-cloak>
 	<header>
 	<nav class="navbar navbar-default navbar-fixed-top sb-nav" ng-controller="navigationController">
       <div class="container">
@@ -56,7 +56,7 @@
 	<br>
 	<br>
 	<div class="container">
-		<div class="row" class="ng-cloak">
+		<div class="row">
 			<div class="col-md-9 sb-content" ng-view>
 		</div>
 		<div class="col-md-3">

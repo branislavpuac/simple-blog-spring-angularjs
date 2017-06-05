@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
@@ -52,6 +53,11 @@ public class CommentController {
 	@PutMapping(value="/{id}", consumes="application/json")
 	public Comment update(@RequestParam Long postId, @PathVariable Long id, @RequestBody Comment comment){
 		return commentService.save(postId, comment);
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/like/{id}", consumes="application/json")
+	public Comment updateLike(@PathVariable Long id, int choice){
+		return commentService.updateLike(id, choice);
 	}
 	
 	@DeleteMapping(value="/{id}")

@@ -2,7 +2,7 @@ package org.bp.lab.simpleblog.web;
 
 import org.bp.lab.simpleblog.domain.Blogger;
 import org.bp.lab.simpleblog.service.BloggerService;
-import org.bp.lab.simpleblog.support.BloggerToBloggerListItemDTO;
+import org.bp.lab.simpleblog.support.converters.BloggerToBloggerListItemDTO;
 import org.bp.lab.simpleblog.web.dto.BloggerListItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

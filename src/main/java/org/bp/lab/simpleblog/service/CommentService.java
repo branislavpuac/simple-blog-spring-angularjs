@@ -12,6 +12,7 @@ public interface CommentService {
 	List<Comment> getAllPostComments(Long postId);
 	Comment findOne(Long id);
 	Comment save(Long postId, Comment comment);
+	public Comment updateLike(Long id, int choice);
 	void delete(Long id);
 
 }

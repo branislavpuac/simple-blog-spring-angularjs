@@ -2,8 +2,8 @@ package org.bp.lab.simpleblog.web;
 
 import org.bp.lab.simpleblog.domain.Post;
 import org.bp.lab.simpleblog.service.PostService;
-import org.bp.lab.simpleblog.support.PostToPostDTO;
-import org.bp.lab.simpleblog.support.PostToPostListItemDTO;
+import org.bp.lab.simpleblog.support.converters.PostToPostDTO;
+import org.bp.lab.simpleblog.support.converters.PostToPostListItemDTO;
 import org.bp.lab.simpleblog.web.dto.PostDTO;
 import org.bp.lab.simpleblog.web.dto.PostListItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;

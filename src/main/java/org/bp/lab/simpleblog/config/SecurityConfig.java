@@ -18,6 +18,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -44,12 +45,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.httpBasic().and()
 			.authorizeRequests()
 			.antMatchers(HttpMethod.GET, "/api/**").permitAll()
-			.antMatchers(HttpMethod.POST, "/api/bloggers/**").permitAll()
+			.antMatchers(HttpMethod.PUT, "/api/comments/like/**").permitAll()
 			.antMatchers(HttpMethod.POST, "/api/**").authenticated()
 			.antMatchers(HttpMethod.PUT, "/api/**").authenticated()
 			.antMatchers(HttpMethod.DELETE, "/api/**").authenticated()
 			.antMatchers(HttpMethod.GET, "/api/users").authenticated()
 			.anyRequest().permitAll().and()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS).and()
 			.logout()
 			.logoutUrl("/logout")
 			.permitAll().and()

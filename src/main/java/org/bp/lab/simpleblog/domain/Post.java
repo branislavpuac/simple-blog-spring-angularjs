@@ -52,7 +52,7 @@ public class Post {
 	@DateTimeFormat(style="M-")
 	private Date updated;
 	
-	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="post")
 	private List<Comment> comments = new ArrayList<>();
 	

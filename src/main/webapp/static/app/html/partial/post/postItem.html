@@ -40,8 +40,8 @@
 				<p>{{ comment.text }}</p>
 				<div>
 					<hr>
-					<div><span class="glyphicon glyphicon-thumbs-up sb-pointer sb-positive" ng-click="updateLike(comment, index, 1)">{{comment.positive}} </span>
-					<span class="glyphicon glyphicon-thumbs-down sb-pointer sb-negative" ng-click="updateLike(comment, index, 0)">{{comment.negative}}</span>
+					<div><span class="glyphicon glyphicon-thumbs-up sb-positive" ng-class="{'sb-pointer': !comment.like, 'sb-like-disabled': comment.like}" ng-click="updateLike(comment.id, index, 1)">{{comment.positive}} </span>
+					<span class="glyphicon glyphicon-thumbs-down sb-negative" ng-class="{'sb-pointer': !comment.like, 'sb-like-disabled': comment.like}" ng-click="updateLike(comment.id, index, 0)">{{comment.negative}}</span>
 					</div>
 				</div>
 			</div>

@@ -96,3 +96,7 @@
     text-shadow: 0 1px rgba(0,0,0,0.3);
     background-color: #357ae8;
 }
+
+.sb-like-disabled {
+	opacity: 0.5;
+}

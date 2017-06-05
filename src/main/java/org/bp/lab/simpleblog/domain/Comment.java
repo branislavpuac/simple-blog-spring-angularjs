@@ -15,6 +15,7 @@ import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Comment {
@@ -42,7 +43,7 @@ public class Comment {
 	private boolean published;
 	
 	@ManyToOne
-	@JsonBackReference(value="post")
+	@JsonIgnore
 	private Post post;
 	
 	@PrePersist

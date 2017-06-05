@@ -1,4 +1,4 @@
-package org.bp.lab.simpleblog.support;
+package org.bp.lab.simpleblog.support.converters;
 
 import org.bp.lab.simpleblog.domain.Post;
 import org.bp.lab.simpleblog.service.CategoryService;

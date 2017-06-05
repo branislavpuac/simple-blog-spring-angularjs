@@ -1,4 +1,4 @@
-package org.bp.lab.simpleblog.support;
+package org.bp.lab.simpleblog.support.converters;
 
 import java.util.ArrayList;
 import java.util.List;

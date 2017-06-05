@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.bp.lab.simpleblog.domain.Post;
 import org.bp.lab.simpleblog.repository.PostRepository;
-import org.bp.lab.simpleblog.support.PostDTOToPost;
+import org.bp.lab.simpleblog.support.converters.PostDTOToPost;
 import org.bp.lab.simpleblog.web.dto.PostDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

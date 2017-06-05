@@ -12,8 +12,6 @@ blog.controller('commentController', function($rootScope, $scope, commentService
 		}
 	};
 	
-	$scope.likeClass = ['glyphicon', 'glyphicon-thumbs-up', 'sb-pointer'];
-	
 	$scope.getPage = function(){
 		commentService.getPage($scope.page, $scope.size, $routeParams.id)
 			.then(function success(response){
@@ -44,19 +42,16 @@ blog.controller('commentController', function($rootScope, $scope, commentService
 			});
 	}
 	
-	$scope.updateLike = function(comment, index, choice){
-		if(choice == 1){
-			comment.positive = comment.positive + 1;
-		}else{
-			comment.negative = comment.negative + 1;
-		}
-		
-		commentService.save(comment, $routeParams.id)
+	$scope.updateLike = function(id, index, choice){
+		commentService.updateLike(id, choice)
 			.then(function success(response){
-				$scope.comments[index] = response.data;
+				if(response.data){
+					$scope.comments[index] = response.data;
+				}
 			}, function error(response){
 				
 			});
+		$scope.comments[index].like = true;
 	};
 	
 	$scope.delete = function(id){

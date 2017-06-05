@@ -24,6 +24,10 @@ blog.service('commentService', function($http){
 		}
 	};
 	
+	this.updateLike = function(id, choice){
+		return $http.put(this.url + '/like/' + id, {}, { params: { 'choice': choice }});
+	};
+	
 	this.delete = function(id){
 		return $http.delete('this.url' + '/' + id);
 	};

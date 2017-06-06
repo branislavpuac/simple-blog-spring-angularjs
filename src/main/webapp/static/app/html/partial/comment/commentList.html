@@ -1,31 +1,82 @@
-<div class="container col-md-12" ng-init="getOne()" ng-controller="postController">
+<div class="container col-md-12" ng-init="getOne()"
+	ng-controller="postController">
 	<div class="row">
 		<div>
-			<h6>{{post.author}} - {{post.created}}</h6>
+			<h6>{{post.author}} - {{post.created | date: 'medium' }}</h6>
 		</div>
 		<div>
-			<h2>{{post.headline}}</h2>
+			<h2>
+				<b>{{post.headline}}</b>
+			</h2>
 		</div>
 		<hr>
 	</div>
+	<div class="row">
+		<div
+			class="col-sm-3 col-sm-offset-2 sb-comment-button sb-pointer text-center"
+			ng-click="commentForm=!commentForm">Add Comment</div>
+		<div
+			class="col-sm-3 col-sm-offset-2 sb-comment-button sb-pointer text-center"
+			ng-click="showPost()">Back to post</div>
+	</div>
+	<div class="well" ng-show="commentForm">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">Name</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="name"
+						placeholder="Name... " ng-model="comment.author">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="headline" class="col-sm-2 control-label">Headline</label>
+				<div class="col-sm-10">
+					<input type="headline" class="form-control" id="headline"
+						placeholder="Headline... " ng-model="comment.headline">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="comment" class="col-sm-2 control-label">Comment</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="15" class="form-control" id="comment"
+						placeholder="Comment ..." ng-model="comment.text"></textarea>
+				</div>
+			</div>
+			<div class="form-group text-center">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button class="btn btn-primary" ng-click="createComment()">Crate
+						Comment</button>
+				</div>
+			</div>
+		</form>
+	</div>
 	<div>
 		<div class="row sb-comments-top" ng-init="findAllByPostId()">
-			<p><b>COMMENTS {{totalComments}}</b></p>
+			<p>
+				<b>COMMENTS {{totalComments}}</b>
+			</p>
 		</div>
 		<div class="row">
 			<div class="well col-md-12">
-			<div class="col-md-11.5 col-md-offset-0.5 sb-comment" ng-repeat="(index,comment) in comments">
-				<h4>{{ comment.headline }}</h4>
-				<h6>{{ comment.author }} - {{ comment.created }}</h6>
-				<hr>
-				<p>{{ comment.text }}</p>
-				<div>
+				<div class="col-md-11.5 col-md-offset-0.5 sb-comment"
+					ng-repeat="(index,comment) in comments">
+					<h4>{{ comment.headline }}</h4>
+					<h6>{{ comment.author }} - {{ comment.created | date: 'medium'
+						}}</h6>
 					<hr>
-					<div><span class="glyphicon glyphicon-thumbs-up sb-positive" ng-class="{'sb-pointer': !comment.like, 'sb-like-disabled': comment.like}" ng-click="updateLike(comment.id, index, 1)">{{comment.positive}} </span>
-					<span class="glyphicon glyphicon-thumbs-down sb-negative" ng-class="{'sb-pointer': !comment.like, 'sb-like-disabled': comment.like}" ng-click="updateLike(comment.id, index, 0)">{{comment.negative}}</span>
+					<p>{{ comment.text }}</p>
+					<div>
+						<hr>
+						<div>
+							<span class="glyphicon glyphicon-thumbs-up sb-positive"
+								ng-class="{'sb-pointer': !comment.like, 'sb-like-disabled': comment.like}"
+								ng-click="updateLike(comment.id, index, 1)">{{comment.positive}}
+							</span> <span class="glyphicon glyphicon-thumbs-down sb-negative"
+								ng-class="{'sb-pointer': !comment.like, 'sb-like-disabled': comment.like}"
+								ng-click="updateLike(comment.id, index, 0)">{{comment.negative}}</span>
+						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 	</div>

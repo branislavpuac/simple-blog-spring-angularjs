@@ -40,6 +40,7 @@ public class PostServiceImpl implements PostService{
 		return postRepository.findAllByBloggerId(id, new PageRequest(page, size));
 	}
 	
+	@Override
 	public Page<Post> findAllPublishedAndApproved(int page, int size){
 		return postRepository.findAllByPublishedAndApproved(true, true, new PageRequest(page, size));
 	}

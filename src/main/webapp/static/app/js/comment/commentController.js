@@ -42,6 +42,19 @@ blog.controller('commentController', function($rootScope, $scope, commentService
 			});
 	}
 	
+	$scope.createComment = function(){
+		commentService.save($scope.comment, $routeParams.id)
+			.then(function success(response){
+				if($location.$$path.startsWith('/comments')){
+					$scope.findAllByPostId();
+				}else{
+					$scope.getPage();
+				}
+			}, function error(response){
+				
+			});
+	};
+	
 	$scope.updateLike = function(id, index, choice){
 		commentService.updateLike(id, choice)
 			.then(function success(response){
@@ -66,6 +79,10 @@ blog.controller('commentController', function($rootScope, $scope, commentService
 	$scope.showAllComments = function(){
 		$location.path('/comments/' + $routeParams.id);
 	};
+	
+	$scope.showPost = function(){
+		$location.path('/post/' + $routeParams.id);
+	}
 	
 	//pagination
 	

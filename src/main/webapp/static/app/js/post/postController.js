@@ -29,7 +29,7 @@ blog.controller('postController', function($rootScope, $scope, postService, $rou
 		postService.findAll($scope.page, $scope.size)
 			.then(function success(response){
 				$scope.posts = response.data.content;
-				$scope.adminTotalItems = response.data.totalElements;
+				$scope.totalItems = response.data.totalElements;
 			}, function error(response){
 				
 			});
@@ -81,23 +81,18 @@ blog.controller('postController', function($rootScope, $scope, postService, $rou
 	
 	$scope.pageChanged = function() {
 		$scope.page = $scope.currentPage -1;
-		$scope.getPage();
+		if($location.$$path.includes('Admin')){
+			$scope.findAll();
+		}else{
+			$scope.getPage();
+		}
+		
 	};
 
 	$scope.maxSize = 5;
 	$scope.totalItems = 175;
 	$scope.currentPage = 1;
 	
-	//admin pagination
-	
-	$scope.adminPageChanged = function() {
-		$scope.page = $scope.adminCurrentPage -1;
-		$scope.findAll();
-	};
-
-	$scope.adminMaxSize = 5;
-	$scope.adminTotalItems = 175;
-	$scope.adminCurrentPage = 1;
 	
 	init();
 	

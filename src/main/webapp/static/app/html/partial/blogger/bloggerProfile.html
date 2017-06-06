@@ -24,12 +24,17 @@
 					<th>Headline</th>
 					<th>Created</th>
 					<th>Updated</th>
+					<th>Actions</th>
 				</tr>
-				<tr ng-repeat="post in posts" class="sb-pointer" ng-click="editPost(post.id)">
+				<tr ng-repeat="post in posts" class="sb-pointer">
 					<td>{{ post.id }}</td>
 					<td>{{ post.headline }}</td>
 					<td>{{ post.created | date: 'short' }}</td>
 					<td>{{ post.updated | date: 'short' }}</td>
+					<td>
+						<button class="btn btn-xs btn-primary" ng-click="editPost(post.id)">Edit</button>
+						<button class="btn btn-xs btn-danger" ng-click="deletePost(post.id)">Delete</button>
+					</td>
 				</tr>
 			</table>
 			<div class="text-center">

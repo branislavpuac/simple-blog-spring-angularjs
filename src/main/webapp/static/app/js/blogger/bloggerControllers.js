@@ -45,6 +45,15 @@ blog.controller('bloggerController', function($rootScope, $scope, bloggerService
 			});
 	};
 	
+	$scope.deletePost = function(id){
+		postService.delete(id)
+			.then(function success(response){
+				$scope.getPostsByBloggerId();
+			}, function error(response){
+				
+			});
+	};
+	
 	$scope.editPost = function(id){
 		$location.path('/addEditPost/' + id);
 	}

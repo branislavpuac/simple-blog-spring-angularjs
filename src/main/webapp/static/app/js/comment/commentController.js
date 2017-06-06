@@ -87,7 +87,8 @@ blog.controller('commentController', function($rootScope, $scope, commentService
 	//pagination
 	
 	$scope.pageChanged = function() {
-		$log.log('Page changed to: ' + $scope.currentPage);
+		$scope.page = $scope.currentPage - 1;
+		$scope.getPage();
 	};
 
 	$scope.maxSize = 5;

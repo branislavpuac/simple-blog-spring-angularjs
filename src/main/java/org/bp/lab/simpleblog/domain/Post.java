@@ -70,7 +70,8 @@ public class Post {
 	@PrePersist
 	protected void onCreate(){
 		created = new Date();
-		UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
 		author = userDetails.getDisplayName();
 		if(userDetails.getSystemRole().equals(SystemRole.ADMIN)){
 			approved = true;
@@ -129,6 +130,12 @@ public class Post {
 	}
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+	public Blogger getBlogger() {
+		return blogger;
+	}
+	public void setBlogger(Blogger blogger) {
+		this.blogger = blogger;
 	}
 	public Category getCategory() {
 		return category;

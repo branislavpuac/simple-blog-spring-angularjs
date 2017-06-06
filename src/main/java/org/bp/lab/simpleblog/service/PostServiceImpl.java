@@ -4,12 +4,14 @@ import java.io.IOException;
 
 import org.bp.lab.simpleblog.domain.Post;
 import org.bp.lab.simpleblog.repository.PostRepository;
+import org.bp.lab.simpleblog.security.UserDetailsImpl;
 import org.bp.lab.simpleblog.support.converters.PostDTOToPost;
 import org.bp.lab.simpleblog.web.dto.PostDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +29,9 @@ public class PostServiceImpl implements PostService{
 	
 	@Autowired
 	PostDTOToPost toPost;
+	
+	@Autowired
+	BloggerService bloggerService;
 
 	@Override
 	@PreAuthorize("hasAuthority('ADMIN')")
@@ -61,10 +66,10 @@ public class PostServiceImpl implements PostService{
 	public Post saveWithFile(String post, MultipartFile file) {
 		
 		ObjectMapper mapper = new ObjectMapper();
-		PostDTO postToPersist = new PostDTO();
+		PostDTO postDTO = new PostDTO();
 		try {
-			postToPersist = mapper.readValue(post, PostDTO.class);
-			postToPersist.setImage(file.getBytes());
+			postDTO = mapper.readValue(post, PostDTO.class);
+			postDTO.setImage(file.getBytes());
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -72,7 +77,11 @@ public class PostServiceImpl implements PostService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return postRepository.save(toPost.convert(postToPersist));
+		UserDetailsImpl userDetailsImpl = (UserDetailsImpl) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+		Post postToPersist = toPost.convert(postDTO);
+		postToPersist.setBlogger(bloggerService.findOne(userDetailsImpl.getId()));
+		return postRepository.save(postToPersist);
 	}
 
 	@Override

@@ -25,11 +25,13 @@ public class BloggerServiceImpl implements BloggerService{
 	BloggerRepository bloggerRepository;
 
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public Page<Blogger> findAll(int page, int size) {
 		return bloggerRepository.findAll(new PageRequest(page, size));
 	}
 
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN') OR (hasAuthority('COMMON') AND #id == principal.id)")
 	public Blogger findOne(Long id) {
 		return bloggerRepository.findOne(id);
 	}
@@ -40,6 +42,7 @@ public class BloggerServiceImpl implements BloggerService{
 	}
 
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN') OR (hasAuthority('COMMON') AND #blogger.id == principal.id)")
 	public Blogger save(Blogger bloger) {
 		return bloggerRepository.save(bloger);
 	}
@@ -62,6 +65,7 @@ public class BloggerServiceImpl implements BloggerService{
 	}
 
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public void delete(Long id) {
 		bloggerRepository.delete(id);
 	}

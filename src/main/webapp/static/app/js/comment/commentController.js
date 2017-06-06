@@ -48,10 +48,10 @@ blog.controller('commentController', function($rootScope, $scope, commentService
 				if(response.data){
 					$scope.comments[index] = response.data;
 				}
+				$scope.comments[index].like = true;
 			}, function error(response){
 				
 			});
-		$scope.comments[index].like = true;
 	};
 	
 	$scope.delete = function(id){

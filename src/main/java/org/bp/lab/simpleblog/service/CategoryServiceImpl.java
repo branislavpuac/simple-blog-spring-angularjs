@@ -7,6 +7,7 @@ import org.bp.lab.simpleblog.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,11 +39,13 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public Category save(Category category) {
 		return categoryRepository.save(category);
 	}
 
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public void delete(Long id) {
 		categoryRepository.delete(id);
 	}

@@ -9,6 +9,7 @@ import org.bp.lab.simpleblog.web.dto.PostDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,11 +29,13 @@ public class PostServiceImpl implements PostService{
 	PostDTOToPost toPost;
 
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public Page<Post> findAll(int page, int size) {
 		return postRepository.findAll(new PageRequest(page, size));
 	}
 	
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN') OR (hasAuthority('COMMON') AND #id == principal.id)")
 	public Page<Post> findAllByBloggerId(Long id, int page, int size) {
 		return postRepository.findAllByBloggerId(id, new PageRequest(page, size));
 	}
@@ -47,11 +50,13 @@ public class PostServiceImpl implements PostService{
 	}
 
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN') OR hasAuthority('COMMON')")
 	public Post save(Post post) {
 		return postRepository.save(post);
 	}
 	
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN') OR hasAuthority('COMMON')")
 	public Post saveWithFile(String post, MultipartFile file) {
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -70,6 +75,7 @@ public class PostServiceImpl implements PostService{
 	}
 
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN') OR hasAuthority('COMMON')")
 	public void delete(Long id) {
 		postRepository.delete(id);
 		

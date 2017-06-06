@@ -9,6 +9,7 @@ import org.bp.lab.simpleblog.support.VisitorData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,7 @@ public class CommentServiceImpl implements CommentService{
 	VisitorData visitorData;
 
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public Page<Comment> findAll(int page, int size) {
 		return commentRepository.findAll(new PageRequest(page, size));
 	}
@@ -70,6 +72,7 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public void delete(Long id) {
 		commentRepository.delete(id);
 		

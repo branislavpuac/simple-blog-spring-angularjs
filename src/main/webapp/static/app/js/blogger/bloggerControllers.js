@@ -27,10 +27,27 @@ blog.controller('bloggerController', function($rootScope, $scope, bloggerService
 	};
 	
 	$scope.getOne = function(){
-		bloggerService.getOne($routeParams.id)
+		if($routeParams.id){
+			bloggerService.getOne($routeParams.id)
 			.then(function success(response){
 				$scope.blogger = response.data;
 			}, function error(response){
+				
+			});
+		}
+	};
+	
+	$scope.file = [];
+	
+	$scope.saveWithFile = function(){
+		var file = $scope.file
+		var fd = new FormData();
+		fd.append('file', file);
+		fd.append('blogger',angular.toJson($scope.blogger,true));
+		bloggerservice.saveWithFile()
+			.then(function success(){
+				
+			}, function error(){
 				
 			});
 	};

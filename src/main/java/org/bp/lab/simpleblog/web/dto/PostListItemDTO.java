@@ -8,6 +8,7 @@ public class PostListItemDTO {
 	private String headline;
 	private String text;
 	private String author;
+	private String category;
 	private byte[] image;
 	private Date created;
 	private Date updated;
@@ -38,6 +39,12 @@ public class PostListItemDTO {
 	}
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public byte[] getImage() {
 		return image;

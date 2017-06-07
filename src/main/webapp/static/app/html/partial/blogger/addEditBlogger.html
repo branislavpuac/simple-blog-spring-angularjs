@@ -1,0 +1,111 @@
+<div>
+	<div ng-init="getOne()">
+		<form class="form-horizontal" name="addEditBlogger">
+			<div class="form-group" ng-show="!blogger.id && currentBlogger.systemRole == 'ADMIN'">
+				<label for="username" class="col-sm-3 control-label">Username</label>
+				<div class="col-sm-7">
+					<input type="text" class="form-control" id="username" name="username"
+						placeholder="Username..." ng-model="blogger.username" 
+						ng-minlength="2" ng-class="{'sb-input-invalid': addEditBlogger.username.$invalid && addEditBlogger.username.$touched}" 
+						required autofocus>
+					<div ng-if="addEditBlogger.username.$error.minlength && addEditBlogger.username.$touched" class="sb-message-danger">
+						Username is too short!
+					</div>
+					<div ng-if="addEditBlogger.username.$error.required && addEditBlogger.username.$touched" class="sb-message-danger">
+						Username is required!			
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="firstName" class="col-sm-3 control-label">First Name</label>
+				<div class="col-sm-7">
+					<input type="text" class="form-control" id="firstName" name="firstName"
+						placeholder="First Name..." ng-model="blogger.firstName" 
+						ng-class="{'sb-input-invalid': addEditBlogger.firstName.$invalid && addEditBlogger.firstName.$touched}" 
+						ng-minlength="2" required>
+					<div ng-if="addEditBlogger.firstName.$error.minlength && addEditBlogger.firstName.$touched" class="sb-message-danger">
+						First name is too Short!
+					</div>
+					<div ng-if="addEditBlogger.firstName.$error.required && addEditBlogger.firstName.$touched" class="sb-message-danger">
+						First name is required!
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastName" class="col-sm-3 control-label">Last Name</label>
+				<div class="col-sm-7">
+					<input type="text" class="form-control" id="lastName" name="lastName"
+						placeholder="Last Name..." ng-model="blogger.lastName" 
+						ng-class="{'sb-input-invalid': addEditBlogger.lastName.$invalid && addEditBlogger.lastName.$touched}" 
+						ng-minlegth="2" required>
+					<div ng-if="addEditBlogger.lastName.$error.minlength && addEditBlogger.lastName.$touched" class="sb-message-danger">
+						Last name is too short!
+					</div>
+					<div ng-if="addEditBlogger.lastName.$error.required && addEditBlogger.lastName.$touched" class="sb-message-danger">
+						Last name is required
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-sm-3 control-label">Password</label>
+				<div class="col-sm-7">
+					<input type="password" class="form-control" id="password" name="password"
+						placeholder="Password..." ng-model="blogger.password" 
+						ng-class="{'sb-input-invalid': addEditBlogger.password.$invalid && addEditBlogger.password.$touched}" 
+						min-length="6" required>
+					<div ng-if="addEditBlogger.password.$error.minlength && addEditBlogger.password.$touched" class="sb-message-danger">
+						Password is too short!
+					</div>
+					<div ng-if="addEditBlogger.password.$error.required && addEditBlogger.password.$touched" class="sb-message-danger">
+						Password is required!
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-sm-3 control-label">Confirm Password</label>
+				<div class="col-sm-7">
+					<input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+						placeholder="Confirm Password..." ng-model="blogger.confirmPassword" 
+						ng-class="{'sb-input-invalid': addEditBlogger.confirmPassword.$invalid && addEditBlogger.confirmPassword.$touched}" 
+						min-length="6" required compare-to="blogger.paswword">
+					<div ng-if="addEditBlogger.confirmPassword.$invalid && addEditBlogger.confirmPassword.$touched" class="sb-message-danger">
+						Password confirm doesn't match password!
+					</div>
+					<div ng-if="addEditBlogger.confirmPassword.$error.required && addEditBlogger.confirmPassword.$touched" class="sb-message-danger">
+						Password confirm is required!
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="systemRole" class="col-sm-3 control-label">System Role</label>
+				<div class="col-sm-7">
+					<select class="form-control" id="systemRole" placeholder="System Role..." name="systemRole" 
+						ng-model="blogger.systemRole" 
+						ng-class="{'sb-input-invalid': addEditBlogger.systemRole.$invalid && addEditBlogger.systemRole.$touched}" 
+						ng-disabled="currentBlogger.systemRole != 'ADMIN'" required>
+						<option disabled selected>System Role</option>
+						<option>COMMON</option>
+						<option>ADMIN</option>
+					</select>
+					<div ng-if="addEditBlogger.systemRole.$invalid && addEditBlogger.systemRole.$touched" class="sb-message-danger">
+						System role is required!
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="image" class="col-sm-3 control-label">Image</label>
+				<div class="col-sm-3">
+					<input type="file" class="form-control" id="image" name="image"
+						placeholder="Image..." file-model="file"
+						ng-class="{'sb-input-invalid': addEditBlogger.lastName.$invalid && addEditBlogger.lastName.$touched}" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-7">
+					<button class="btn btn-success" ng-show="blogger.id">Update blogger</button>
+					<button class="btn btn-success" ng-show="!blogger.id">Create blogger</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

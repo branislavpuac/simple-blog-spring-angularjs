@@ -23,6 +23,7 @@ public class PostToPostListItemDTO implements Converter<Page<Post>, Page<PostLis
 			postListItemDTO.setHeadline(p.getHeadline());
 			postListItemDTO.setText(p.getText());
 			postListItemDTO.setAuthor(p.getAuthor());
+			postListItemDTO.setCategory(p.getCategory().getName());
 			postListItemDTO.setImage(p.getImage());
 			postListItemDTO.setCreated(p.getCreated());
 			postListItemDTO.setUpdated(p.getUpdated());

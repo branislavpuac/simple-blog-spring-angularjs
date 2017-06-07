@@ -62,6 +62,14 @@ blog.config(function($routeProvider, $httpProvider) {
 		templateUrl: '/static/app/html/partial/blogger/bloggerProfile.html',
 		controller: 'bloggerController'
 	})
+	.when('/addEditBlogger', {
+		templateUrl: '/static/app/html/partial/blogger/addEditBlogger.html',
+		controller: 'bloggerController'
+	})
+	.when('/addEditBlogger/:id', {
+		templateUrl: '/static/app/html/partial/blogger/addEditBlogger.html',
+		controller: 'bloggerController'
+	})
 	.when('/login', {
 		templateUrl: '/static/app/html/login.html',
 		controller: 'navigationController'

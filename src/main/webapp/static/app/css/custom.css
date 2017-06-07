@@ -72,6 +72,7 @@
 
 .sb-input-invalid{
 	border-color: red;
+	box-shadow: 0 0 5px red;
 }
 
 .sb-message-danger{

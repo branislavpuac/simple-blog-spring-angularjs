@@ -5,7 +5,7 @@
 				<div class="col-md-2">
 					<img class="media-object" src="data:image/jpg;base64,{{blogger.image}}" alt="..." width="130">
 				</div>
-				<div class="col-md-10">
+				<div class="col-md-3">
 					<ul class="list-unstyled">
 						<li><b>Username:</b> {{blogger.username }}</li>
 						<li><b>First Name:</b> {{ blogger.firstName }}</li>
@@ -13,6 +13,13 @@
 						<li><b>System Role:</b> {{ blogger.systemRole }}</li>
 						<li><b>Email:</b> {{ blogger.email }}</li>
 					</ul>
+				</div>
+				<div class="col-md-7" style="border-bottom: 0.5px solid grey;">
+					<br>
+					<br>
+					<br>
+					<a href="#!/addEditPost"><button class="btn btn-success">Create Post</button></a>
+					<a href="#!/addEditBlogger/{{blogger.id}}"><button class="btn btn-primary">Edit profile</button></a>
 				</div>
 			</div>
 		</div>
@@ -22,6 +29,7 @@
 				<tr>
 					<th>Id</th>
 					<th>Headline</th>
+					<th>Category</th>
 					<th>Created</th>
 					<th>Updated</th>
 					<th>Actions</th>
@@ -29,6 +37,7 @@
 				<tr ng-repeat="post in posts" class="sb-pointer">
 					<td>{{ post.id }}</td>
 					<td>{{ post.headline }}</td>
+					<td>{{ post.category }}</td>
 					<td>{{ post.created | date: 'short' }}</td>
 					<td>{{ post.updated | date: 'short' }}</td>
 					<td>

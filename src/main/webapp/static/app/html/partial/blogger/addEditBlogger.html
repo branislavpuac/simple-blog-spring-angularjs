@@ -95,9 +95,12 @@
 			<div class="form-group">
 				<label for="image" class="col-sm-3 control-label">Image</label>
 				<div class="col-sm-3">
-					<input type="file" class="form-control" id="image" name="image"
-						placeholder="Image..." file-model="file"
+					<input type="file" class="form-control" id="image" name="image" 
+						placeholder="Image..." file-model="file" custom-on-change="uploadFile" 
 						ng-class="{'sb-input-invalid': addEditBlogger.lastName.$invalid && addEditBlogger.lastName.$touched}" required>
+				</div>
+				<div class="col-md-2">
+					<img ng-src="{{file}}" ng-show="file"alt="..." width="130">
 				</div>
 			</div>
 			<div class="form-group">

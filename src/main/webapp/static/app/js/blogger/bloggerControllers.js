@@ -31,13 +31,35 @@ blog.controller('bloggerController', function($rootScope, $scope, bloggerService
 			bloggerService.getOne($routeParams.id)
 			.then(function success(response){
 				$scope.blogger = response.data;
+				$scope.file = 'data:image/jpg;base64,' + response.data.image;
 			}, function error(response){
 				
 			});
 		}
 	};
 	
+	$scope.uploadFile = function(event) {
+		var files = event.target.files;
+		getBase64(files[0]);
+		
+	};
+	
+	function getBase64(file) {
+		   var reader = new FileReader();
+		   reader.readAsDataURL(file);
+		   reader.onload = function () {
+			   $scope.$apply(function(){
+				   $scope.file = reader.result;
+			   });
+		   };
+		   reader.onerror = function (error) {
+		     console.log('Error: ', error);
+		   };
+	};
+	
 	$scope.file = [];
+	
+	$scope.tempfile = [];
 	
 	$scope.saveWithFile = function(){
 		var file = $scope.file

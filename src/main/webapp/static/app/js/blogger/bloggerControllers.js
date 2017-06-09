@@ -39,6 +39,7 @@ blog.controller('bloggerController', function($rootScope, $scope, bloggerService
 	};
 	
 	$scope.uploadFile = function(event) {
+		$scope.tempFile = $scope.file;
 		var files = event.target.files;
 		getBase64(files[0]);
 		
@@ -62,7 +63,7 @@ blog.controller('bloggerController', function($rootScope, $scope, bloggerService
 	$scope.tempfile = [];
 	
 	$scope.saveWithFile = function(){
-		var file = $scope.file
+		var file = $scope.tempfile;
 		var fd = new FormData();
 		fd.append('file', file);
 		fd.append('blogger',angular.toJson($scope.blogger,true));

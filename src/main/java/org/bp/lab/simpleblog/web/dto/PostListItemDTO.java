@@ -15,6 +15,7 @@ public class PostListItemDTO {
 	private int comments;
 	private boolean published;
 	private boolean approved;
+	private long visitsCounter;
 	
 	public Long getId() {
 		return id;
@@ -82,5 +83,12 @@ public class PostListItemDTO {
 	public void setApproved(boolean approved) {
 		this.approved = approved;
 	}
+	public long getVisitsCounter() {
+		return visitsCounter;
+	}
+	public void setVisitsCounter(long visitsCounter) {
+		this.visitsCounter = visitsCounter;
+	}
+	
 
 }

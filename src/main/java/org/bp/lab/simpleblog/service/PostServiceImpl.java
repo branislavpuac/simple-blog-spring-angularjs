@@ -52,7 +52,12 @@ public class PostServiceImpl implements PostService{
 
 	@Override
 	public Post findOne(Long id) {
-		return postRepository.findOne(id);
+		Post post =  postRepository.findOne(id);
+		long visitsCounter = post.getVisitsCounter();
+		visitsCounter++;
+		post.setVisitsCounter(visitsCounter);
+		postRepository.save(post);
+		return post;
 	}
 
 	@Override

@@ -67,6 +67,8 @@ public class Post {
 	
 	private boolean approved;
 	
+	private long visitsCounter;
+	
 	@PrePersist
 	protected void onCreate(){
 		created = new Date();
@@ -154,6 +156,12 @@ public class Post {
 	}
 	public void setApproved(boolean approved) {
 		this.approved = approved;
+	}
+	public Long getVisitsCounter() {
+		return visitsCounter;
+	}
+	public void setVisitsCounter(Long visitsCounter) {
+		this.visitsCounter = visitsCounter;
 	}
 	
 }

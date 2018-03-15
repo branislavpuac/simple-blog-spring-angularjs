@@ -3,6 +3,8 @@ var sharedControllers = angular.module('sharedControllers', []);
 sharedControllers.controller('navigationController', function($scope, $http, $rootScope, $location){
 	
 	$scope.credentials = {};
+
+	$scope.incorectPassword = false;
 	
 	var authenticate = function(credentials, callback) {
 		
@@ -21,6 +23,7 @@ sharedControllers.controller('navigationController', function($scope, $http, $ro
 				callback && callback($rootScope.currentBlogger, response.data);
 			}, function error(response){
 				$scope.currentBlogger = null;
+				$scope.incorectPassword = true;
 				callback && callback(false, response.data)
 			});
 	};

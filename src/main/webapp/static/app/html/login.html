@@ -27,6 +27,9 @@
 					<div ng-if="loginForm.password.$error.required && loginForm.password.$touched" class="sb-message-danger">
 						Password is required!
 					</div>
+					<div ng-if="incorectPassword" class="sb-message-danger">
+						Username or password are incorrect
+					</div>
 			</div>
 			<input type="submit" ng-class="{'sb-submit': !loginForm.$invalid, 'sb-submit-invalid': loginForm.$invalid }" 
 					value="Login" ng-click="login()" ng-disabled="loginForm.$invalid">
